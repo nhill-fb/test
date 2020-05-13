@@ -1,0 +1,58 @@
+{%- comment -%}
+// There is a lot happening here.  
+1.  is_link_button will make the whole container clickable, which also removes inner anchor CTA
+2.  there are 5 possible positioning for text: left, right, top, below, above.  CSS to handle position, do not change markup here
+3.  .content, .inner, and .caption is designed to give you more flexibility in CSS to style without changing the markup
+4.  if link is external then add target blank
+5.  if link is a video then use lity to do a popup
+{%- endcomment -%}
+{%- if link contains 'youtube.com' or link contains 'vimeo.com' or link contains 'youtu.be' -%}
+  {%- assign isVideo = true -%}
+{%- endif -%}
+{%- if link contains 'http://' or link contains 'https://' -%}
+  {%- unless isVideo -%}
+    {%- assign isExternal = true -%}
+  {%- endunless -%}
+{%- endif -%}
+{%- assign final_content_width = '' -%}
+{%- if text_layout == 'left' or text_layout == 'right' -%}
+  {%- assign colwidth = content_width | default: 6 -%}
+  {%- assign final_content_width = 'col-md-' | append: colwidth -%}
+{%- endif -%}
+{%- assign is_link_button = link_button | default: true -%}
+{%- if link_type == "container" -%} {%- assign is_link_button = false -%} {%-endif-%}
+{%- assign tag = headingTag | default: "h2" -%}
+<div class="image-text {{title | handle}}" style="background-color: {{bg}};color: {{color}}">
+  {%- if link != blank and is_link_button == false -%}
+  <a class="image-text__container {{container}} {{padding}} {{text_layout}}"{%if isVideo%} data-lity{%endif%}{%if isExternal%} target="_blank"{%endif%} href="{{link}}">
+  {%- else -%}
+  <div class="image-text__container {{container}} {{padding}} {{text_layout}}">
+  {%- endif -%}
+    {%- if mobile_image != blank -%}
+    {% include 'responsive-img' image: mobile_image, class: 'mobile', lazyload: lazyload %}
+    {%- endif -%}
+    {%- if img != blank -%}
+    {% include 'responsive-img' image: img, lazyload: lazyload %}
+    {%- endif -%}
+    <div class="content {{final_content_width}} {{text_pos_mobile}} {{text_pos}}">
+      <div class="inner {{text_align}}"{%-if width != blank-%}style="max-width: {{width}}px"{%-endif-%}>
+        {%-if title != blank-%}<{{tag}}>{{title}}</{{tag}}>{%-endif-%}
+        <div class="caption">
+          {%-if subtitle != blank-%}<h3>{{subtitle}}</h3>{%-endif-%}
+          {{body_text}}
+          {%- if link_text != empty and link_type != empty -%}
+            {%- if is_link_button == true -%}
+            <a class="link {{link_type}}"{%if isVideo%} data-lity{%endif%}{%if isExternal%} target="_blank"{%endif%} style="{%-if btn_color != blank-%}color:{{btn_color}};{%-endif-%}{%-if btn_bg != blank and link_type contains 'btn-primary' -%}background-color:{{btn_bg}};border-color:{{btn_bg}}{%-endif-%}" href="{{link}}">{{link_text}}</a>
+            {%-else-%}
+            <div class="link" style="{%-if btn_color != blank-%}color:{{btn_color}};{%-endif-%}{%-if btn_bg != blank and link_type != 'anchor' -%}background-color:{{btn_bg}};border-color:{{btn_bg}}{%-endif-%}">{{link_text}}</div>
+            {%-endif-%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- if link != blank and is_link_button == false  -%}
+  </a>
+  {%- else -%}
+  </div>
+  {%- endif -%}
+</div>

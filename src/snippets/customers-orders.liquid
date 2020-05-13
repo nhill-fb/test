@@ -1,0 +1,88 @@
+<div class="customers__content customers__orders {% if customer.orders.size == 0 %}customers__orders--none{% endif %}">
+      
+  <div class="customers__mobile__header">
+    Order History
+    <a href="#" class="customers__mobile__navtrigger"><</a>
+  </div>
+
+  {% if customer.orders.size != 0 %}
+
+      {% for order in customer.orders %}
+        <div class="customers__orders__item">
+          <h1 class="customers__orders__item__title">Order {{ order.name }}</h1>
+          <p class="customers__orders__item__brief">
+            Date: {{ order.created_at | date: format: 'month_day_year' }}
+            <br/>
+            Payment Status: {{ order.financial_status_label }}
+            <br/>
+            Fulfillment Status: {{ order.fulfillment_status_label }}
+            <br/>
+            Total: {{ order.total_price | money }}
+          </p>
+          <a href="{{ order.customer_url }}" class="customers__orders__item__link">
+            <span class="more">{% include 'icon-qty-more' %}</span>
+            <span class="less">{% include 'icon-qty-less' %}</span>
+          </a>
+
+          <div class="customers__order">
+
+            <div class="customers__order__header">
+              Order {{ order.name }}
+              <a href="#" class="customers__order__close"><</a>
+            </div>
+
+            {% for line_item in order.line_items %}
+              <h1 class="customers__order__title">{{ line_item.title }}</h1>
+              <h2 class="customers__order__scentnotes">{{ line_item.product.description }}</h2>
+              <h2 class="customers__order__size">ITEM: 2.6oz NATURAL DEODORANT</h2>
+              <h2 class="customers__order__qty">Quantity: {{ line_item.quantity }}</h2>
+
+              <div class="customer__order__hr"></div>
+
+              <div class="customers__order__cols">
+                <div class="customers__order__col">
+                  <h3>Product Info</h3>
+                  <p>
+                    Date: {{ 'customer.order.date' | t: date: order.created_at | date: "%B %d, %Y %I:%M%p" }}
+                    <br/>
+                    Payment Status: {{ order.financial_status_label }}
+                    <br/>
+                    Fulfilment Status: {{ order.fulfillment_status_label }}
+                  </p>
+                </div>
+                <div class="customers__order__col">
+                  <h3>Billed To</h3>
+                  <p>
+                    {{ order.billing_address | format_address }}
+                  </p>
+                </div>
+                <div class="customers__order__col">
+                  <h3>Shipped To</h3>
+                  <p>
+                    {{ order.shipping_address | format_address }}
+                  </p>
+                </div>
+                <div class="customers__order__col">
+                  <h3>Shipping Method</h3>
+                  <p>
+                    Standard
+                  </p>
+                </div>
+              </div>
+            {% endfor %}
+
+          </div>
+
+        </div>
+      {% endfor %}
+  {% else %}
+    <div class="customers__orders__none">
+      <h1 class="customers__orders__none__header">You Have Not Placed any Orders Yet.</h1>
+      <p>
+        Don’t be shy. Making the switch to natural deodorant will leave you feeling good and smelling even better. 
+      </p>
+      <a href="/collections/natural-deodorant" class="btn secondary on-light-bg">Shop All Natural Deodorants</a>
+    </div>
+  {% endif %}
+
+</div>

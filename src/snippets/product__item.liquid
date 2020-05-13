@@ -1,0 +1,35 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<div class="product__item">
+  <div class="product__item-media">
+    <a class="product__item-images" href="{{ product.url | within: collection }}">
+      {% include 'responsive-img' image: product.featured_image, class: "product__item-img primary" %}
+    </a>
+    {% comment %} <div class="product__item-quickshop">
+      <div class="product__item-options">
+        Place holder for size option, generated inside Vue <product> component 
+      </div>
+    </div>{% endcomment %}
+  </div>
+  <a class="product__item-summary" href="{{ product.url | within: collection }}">
+    <h3 class="product__item-name">{{ product.title }}</h3>
+    <div class="product__item-extra">
+      {%- if current_variant.available -%}
+        <span class="product__item-prices">
+          <span class="money">
+            <span>{{ current_variant.price | money | remove: '.00' }}</span>
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <s>{{ variant.compare_at_price | money | remove: '.00' }}</s>
+            {%- endif -%} 
+          </span>
+        </span>
+      {%- else -%}
+        <span class="label">{{ 'products.product.unavailable' | t }}</span>
+      {%- endif -%}
+
+      {%- unless product.available -%}
+        <span class="label">{{ 'products.product.sold_out' | t }}</span>
+      {%- endunless -%}
+    </div>
+  </a>
+  {% comment %} <product-option :option="colorOption" @selected="selectOption" :is-available="isAvailable"></product-option> {% endcomment %}
+</div>

@@ -1,0 +1,19 @@
+{% assign products_to_hide = settings.hidden_products | split: ", " %}
+<div class="block-trios__items {{css}}">
+  <h2>{{heading}}</h2>
+  {% for product in collections.natural-deodorant.products %}
+  	{% unless products_to_hide contains product.handle %}
+      {%- assign oos = product.metafields.disable_mini_variant.disable_mini_variant -%}
+      <div class="block-trios__item{% if oos %} inactive{%endif%}">
+        <div class="block-trios__item__content">
+          {%if oos %}<span class="oos">Out of Stock</span>{%endif%}
+          <h1>{{ product.title }}</h1>
+          <p>
+            {{ product.description }}
+          </p>
+          <span class="block-trios__item__check">{% include 'icon-checkmark' %}</span>
+        </div>
+      </div> 
+  	{% endunless %}
+  {% endfor %}
+</div>

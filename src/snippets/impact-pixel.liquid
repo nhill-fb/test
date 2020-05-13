@@ -1,0 +1,26 @@
+<script type="text/javascript">
+(function(a,b,c,d,e,f,g){e['ire_o']=c;e[c]=e[c]||function(){(e[c].a=e[c].a||[]).push(arguments)};f=d.createElement(b);g=d.getElementsByTagName(b)[0];f.async=1;f.src=a;g.parentNode.insertBefore(f,g);})('//d.impactradius-event.com/A1405274-7905-4cc0-b963-bde1c72647cd1.js','script','ire',document,window);
+
+  ire('identify', {customerId: '{{customer.id}}', customerEmail: '{{customer.email | sha1}}'});
+
+                 
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getQueryString() {
+  var qs = window.location.search.substr(1).split("&");
+  var res = {};
+  qs.forEach(function(s) {
+    var split = s.split("=")
+    res[split[0].toUpperCase()] = split[1];
+  });
+  return res; 
+}
+  var qsObj = getQueryString();
+  if(qsObj.IRCLICKID) {
+  	setCookie('IRCLICKID', qsObj.IRCLICKID, 30);
+  }
+</script>

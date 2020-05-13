@@ -1,0 +1,11 @@
+{%comment%}
+  This view template is meant for AJAX to get grouped products in a collection.
+  example: example.com/collections/all/styleXYZ?view=json
+{%endcomment%}
+{% layout none %}
+[
+  {%- for prod in collection.products -%}
+    {%- include 'json__product' model: prod -%}{%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
+

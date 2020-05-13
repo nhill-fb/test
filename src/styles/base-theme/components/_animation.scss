@@ -1,0 +1,56 @@
+$animation-duration: 0.5s;
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity $animation-duration ease-in-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+$drawer-duration: 0.4s;
+
+// drawer animation
+.drawer-right-enter-active,
+.drawer-right-leave-active,
+.drawer-left-enter-active,
+.drawer-left-leave-active {
+  transition: opacity $drawer-duration;
+
+  .drawer__container {
+    transition: transform $drawer-duration;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.drawer-right-enter,
+.drawer-right-leave-to {
+  opacity: 0;
+
+  .drawer__container {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.drawer-right-enter,
+.drawer-left-enter {
+  .drawer__container {
+    transition-delay: $drawer-duration;
+  }
+}
+
+.drawer-right-leave-active,
+.drawer-left-leave-active {
+  transition-delay: $drawer-duration;
+}
+
+.drawer-left-enter,
+.drawer-left-leave-to {
+  opacity: 0;
+
+  .drawer__container {
+    transform: translate3d(-100%, 0, 0);
+  }
+}

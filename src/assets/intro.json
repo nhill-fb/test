@@ -1,0 +1,218 @@
+{
+  "seasons": [
+    {
+      "season": "spring",
+      "day": {
+        "anywhere": [
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388052.hd.mp4?s=382149df7ea4f1a92835bc672dac2882a04b05eb&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388052.hd.mp4?s=382149df7ea4f1a92835bc672dac2882a04b05eb&profile_id=175",
+            "note": "short forest"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "note": "short forest 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "note": "short clouds"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "note": "short clouds 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "note": "lake"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "note": "palm"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "note": "forest 3"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "note": "floral"
+          }
+        ]
+      },
+      "night": {
+        "anywhere": [
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388052.hd.mp4?s=382149df7ea4f1a92835bc672dac2882a04b05eb&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388052.hd.mp4?s=382149df7ea4f1a92835bc672dac2882a04b05eb&profile_id=175",
+            "note": "short forest"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "note": "short forest 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "note": "short clouds"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "note": "short clouds 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "note": "lake"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "note": "palm"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "note": "forest 3"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "note": "floral"
+          }
+        ]
+      }
+    },
+    {
+      "season": "fallback",
+      "day": {
+        "anywhere": [
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/280273833.hd.mp4?s=e4cbce8b19ec42253088eb17f3efc0fc613a7d93&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/280429399.hd.mp4?s=c2b3963bfb597df6a3057144c9bb55d6befcfa36&profile_id=175",
+            "note": "short forest"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "note": "short forest 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "note": "short clouds"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "note": "short clouds 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "note": "lake"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "note": "palm"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "note": "forest 3"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "note": "floral"
+          }
+        ]
+      },
+      "night": {
+        "anywhere": [
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/280273833.hd.mp4?s=e4cbce8b19ec42253088eb17f3efc0fc613a7d93&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/280429399.hd.mp4?s=c2b3963bfb597df6a3057144c9bb55d6befcfa36&profile_id=175",
+            "note": "short forest"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273388024.hd.mp4?s=3a8a0feaab138cde1b364216cc03835d321e9f4a&profile_id=175",
+            "note": "short forest 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387975.hd.mp4?s=ff4608fe9274e716aa84cc690c7c5364d1ec8c2c&profile_id=175",
+            "note": "short clouds"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/273387950.hd.mp4?s=96b0741f4480fc70216008b121246fc4d4526c46&profile_id=175",
+            "note": "short clouds 2"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269984052.hd.mp4?s=03226ec678029e68d718b8e7dbb6a292b4159aab&profile_id=175",
+            "note": "lake"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781851.hd.mp4?s=b1762975b9d76181aeb6e1d77b7690ff02565c00&profile_id=175",
+            "note": "palm"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/269985186.hd.mp4?s=35da6f53537ffa46d0406e2c3f43b0411b54204a&profile_id=175",
+            "note": "forest 3"
+          },
+          {
+            "type": "video",
+            "desktop": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "mobile": "https:\/\/player.vimeo.com\/external\/272781825.hd.mp4?s=833091f4c2b8c66c1ee5adbc42d0b255f8f98512&profile_id=175",
+            "note": "floral"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+<div class="customers customers--internal">
+  <div class="customers__header">
+    <h1>{{ customer.first_name}}'s Account</h1>
+  </div>
+
+  <div class="customers__main">
+
+    <div class="customers__nav">
+      <div class="customers__nav__header">
+        {{ customer.first_name}}'s Account
+      </div>
+      <ul>
+        <li><a href="#profile" class="customers__nav__item">Profile<div class="customers__nav__item__hr"></div></a></li>
+        <li><a href="#orders" class="customers__nav__item">Order History<div class="customers__nav__item__hr"></div></a></li>
+        <li><a href="#addresses" class="customers__nav__item active">Address Book<div class="customers__nav__item__hr"></div></a></li>
+      </ul>
+      <ul>
+        <li><a href="/account/logout">Sign Out</a></li>
+      </ul>
+    </div>
+
+    {% include 'customers-profile' %}
+    {% include 'customers-orders' %}
+    {% include 'customers-addresses' %}
+  </div>
+</div>

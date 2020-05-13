@@ -1,0 +1,112 @@
+<div class="accounts vue-accounts">
+  <div class="accounts__container">
+    
+    <div class="accounts__login" v-show="login.isVisible">
+      {% form 'customer_login' %}
+        <h1 class="accounts__title">{{ 'customer.login.title' | t }}</h1>
+
+        {{ form.errors | default_errors }}
+        <div class="login-container">
+          <div class="login-section">
+            <h2>Customer Login</h2>
+            <div class="form-group">
+              <label for="CustomerEmail" class="label-hidden">
+                Email Address
+              </label>
+              <input type="email"
+                    name="customer[email]"
+                    id="CustomerEmail"
+                    class="form-control {% if form.errors contains 'email' %}input-error{% endif %}"
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    required
+                    autofocus>
+            </div>
+
+            {% if form.password_needed %}
+            <div class="form-group">
+              <label for="CustomerPassword" class="label-hidden">
+                {{ 'customer.login.password' | t }}
+              </label>
+              <input type="password"
+                    name="customer[password]"
+                    id="CustomerPassword"
+                    required
+                    class="form-control {% if form.errors contains 'password' %}input-error{% endif %}"
+                    >
+            </div>
+            {% endif %}
+            <div class="btn-group">
+              <input type="submit" class="btn btn-primary btn-block" value="Log In">
+            </div>
+
+            {% if form.password_needed %}
+              <a href="#recover" @click="toggleRecover" class="accounts__recover-link">Forgot Password?</a>
+            {% endif %}
+          </div>
+          <div class="create-section">
+            <h2>Create Account</h2>
+            <p>Create an account for easier checkout</p>
+            <div class="btn-group">
+              
+              {% comment %} <a href="/">{{ 'customer.login.cancel' | t }}</a> {% endcomment %}
+              <a href="/account/register" class="btn btn-primary btn-block">
+                Get Started
+              </a>
+            </div>
+          </div>
+        </div>
+      {% endform %}
+
+    </div>
+
+    <div class="accounts__recover-pass">     
+      {% form 'recover_customer_password' %}
+        {% if form.posted_successfully? %}
+          <div class="form-success">
+            {{ 'customer.recover_password.success' | t }}
+          </div>
+        {% endif %}
+        <div class="accounts__recover-body" style="display: none" v-show="recoverPass.isVisible">
+          <h2 class="accounts__title">{{ 'customer.recover_password.title' | t }}</h2>
+          <p class="text-center">{{ 'customer.recover_password.subtext' | t }}</p>
+          
+          
+          <div class="form-group">
+            <label for="RecoverEmail" class="label-hidden">
+              {{ 'customer.recover_password.email' | t }}
+            </label>
+            <input type="email"
+                  name="email"
+                  id="RecoverEmail"
+                  class="form-control"
+                  required
+                  spellcheck="false"
+                  autocomplete="off"
+                  autocapitalize="off">
+          </div>
+
+          <div class="btn-group">
+            <input type="submit" class="btn btn-primary btn-block" value="{{ 'customer.recover_password.submit' | t }}">
+
+            <button type="button" class="btn btn-outline-primary btn-block" @click="toggleRecover">
+              {{ 'customer.recover_password.cancel' | t }}
+            </button>
+          </div>
+          {{ form.errors | default_errors }}
+        </div>
+      {% endform %}
+
+    </div>
+
+    {% if shop.checkout.guest_login %}
+      <h2 class="accouns__title">{{ 'customer.login.guest_title' | t }}</h2>
+
+      {% form 'guest_login' %}
+        <input type="submit" class="btn btn-outline-primary" value="{{ 'customer.login.guest_continue' | t }}">
+      {% endform %}
+    {% endif %}
+
+  </div>
+</div>

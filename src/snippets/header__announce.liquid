@@ -1,0 +1,15 @@
+<div class="header__announce vue-app" id="{{id}}">
+  <div class="header__announce-content">
+    {%- if enable_slide -%}
+      {%- capture slideOptions -%}
+      { loop: true, {%if slide_effect == 'slide'%}direction: "vertical",{%endif%} effect: "{{slide_effect | remove: '-left'}}", autoplay: { "delay": {{speed}} } }
+      {%- endcapture -%}
+      {% comment %} IMPORTANT NOTE: It's important to replace <p> with <div> for carousel to correctly convert them to slides {% endcomment %}
+      <carousel :options='{{slideOptions | escape}}' :navigation="false">
+        {{ content | replace: '<p>', '<div class="swiper-slide">' | replace: '</p>', '</div>'}}
+      </carousel>
+    {%- else -%}
+      {{ content }}
+    {%- endif -%}
+  </div>
+</div>

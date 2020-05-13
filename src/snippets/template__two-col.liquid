@@ -1,0 +1,14 @@
+{%- assign alignment = '' -%}
+{%- if swap -%}
+  {% assign alignment = 'right' %}
+{%- endif -%}
+<div class="two-col-banner">
+  <div class="two-col-banner__container {{container}}">
+    <div class="first-col {{alignment}} {{left_width | default: 'col-md-6'}}">
+      {{ leftcol_content }}
+    </div>
+    <div class="second-col">
+      {{ rightcol_content}}
+    </div>
+  </div>
+</div>

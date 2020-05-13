@@ -1,0 +1,23 @@
+{% section 'product' %}
+{% if product.metafields.video.url %}
+  <div class="product-features">
+    <div class="product-features__container">
+      <div class="text-content">
+        {%if product.metafields.features.html != blank %}
+        <h3 class="title">Features</h3>
+        {{product.metafields.features.html}}
+        {% endif %}
+      </div>
+      <div class="video-content">
+        {% if product.metafields.video.url contains '.mp4' %}
+          {% include 'template__video' mp4_url: product.metafields.video.url, loop: true, controls: true, autoplay: true %}
+        {% else %}
+          {% include 'template__video' source: product.metafields.video.url %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% section 'preset__featured-collection' %}
+{% section 'swatch-settings' %}
+{% section 'size-chart' %}

@@ -1,0 +1,168 @@
+.image-text {
+  > a {
+    display: block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.image-text__container {
+  position: relative;
+
+  > .img {
+    flex-grow: 1;
+  }
+
+  > .img.mobile + .img {
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  > .img.mobile {
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+
+  > .content {
+    display: flex;
+  }
+
+  .link {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 1.65rem;
+  }
+
+  &.top .content {
+    padding: 5% 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &.left,
+  &.right {
+    display: flex;
+    flex-direction: column;
+
+    @include media-breakpoint-up(md) {
+      flex-direction: row;
+    }
+
+
+    .content {
+      padding: 15px 20px;
+    }
+
+    .content,
+    .img {
+      width: 100%;
+    }
+  }
+
+  &.left .content {
+    order: -1;
+  }
+
+  &.below {
+    .content {
+      margin-top: 30px;
+    }
+  }
+
+  &.above {
+    display: flex;
+    flex-direction: column;
+
+    .content {
+      order: -1;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.content__text-container {
+  margin: 0 auto;
+
+  ul {
+    list-style-position: inside;
+  }
+}
+
+.content__video {
+  padding: 30px 0 60px;
+}
+
+.content__video-container {
+  @extend .container;
+
+  text-align: center;
+
+  h2 {
+    font-size: 4.4rem;
+  }
+
+  h3 {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+  }
+}
+
+.content__store {
+  #map {
+    height: 600px;
+  }
+
+  .address {
+    margin-top: 40px;
+    line-height: 1.8;
+
+    a {
+      color: $color-brand-primary;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .content__store {
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+
+    h2 {
+      font-size: 5rem;
+      max-width: 250px;
+    }
+
+    .store {
+      display: flex;
+      align-items: center;
+
+      .text-content,
+      .img-content {
+        width: 50%;
+      }
+
+      .text-content {
+        padding-left: 50px;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-up(lg) {
+  .content__store .store .text-content {
+    padding-left: 100px;
+  }
+}

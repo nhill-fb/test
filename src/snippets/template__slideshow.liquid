@@ -1,0 +1,9 @@
+{%- assign slideId = id | default: 'slideshow' -%}
+<section class="slideshow__section vue-app {{class}}" id="{{slideId}}">
+  <div class="slideshow__section-container">
+    {%-if title != blank-%}<h2>{{ title }}</h2>{%-endif-%}
+    <carousel class="slideshow" {{slide_attr}}>
+      {{slides}}
+    </carousel>
+  </div>
+</section>

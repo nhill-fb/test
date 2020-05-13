@@ -1,0 +1,20 @@
+{% if banner != blank %}
+<div class="banner__inline">
+  <div class="banner__inline-media">
+    <div class="banner__inline-images">
+      {% include 'responsive-img' src: banner.settings.image %}
+    </div>
+  </div>
+  {%if banner.settings.url %}
+  <a class="banner__inline-summary" href="{{ banner.settings.url }}">
+  {%else%}
+  <div class="banner__inline-summary">
+  {%endif%}
+    <h2 class="banner__inline-name">{{ banner.settings.title }}</h2>
+  {%if banner.settings.url %}
+  </a>
+  {%else%}
+  </div>
+  {%endif%}
+</div>
+{% endif %}

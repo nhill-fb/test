@@ -1,0 +1,91 @@
+//============== Colors for this theme
+$color-whisper: #e2e2e2;
+$color-alabaster: #f7f7f7;
+$color-mercury: #e6e7f1;
+$color-silver-chalice: #9f9f9f;
+$color-gray: #808080;
+
+$color-text-primary: #000; // primary color for text
+$color-text-secondary: #000; // secondary color for text like header__announce
+$color-text-tertiary: #000; // color for footer links
+$color-placeholder: $color-gray;
+$color-brand-primary: $color-silver-chalice; // brand primary color
+$color-brand-secondary: $color-silver-chalice; // brand secondary color
+$color-brand-tertiary: #000;
+$color-brand-bg: #fffaf5;
+$color-brand-border: $color-whisper;
+$color-brand-secondary-border: $color-mercury;
+$color-brand-primary-bg: $color-alabaster;
+$color-cta-primary: #000; // primary color for anchors and misc cta
+$color-cta-secondary: #000;
+$color-cta-primary-hover: #000;
+$color-cta-primary-bg: $color-alabaster;
+
+
+// ============= Custom variables for this theme
+
+
+$hamburger-layer-width: 20px !default;
+$hamburger-layer-height: 3px !default;
+$hamburger-layer-spacing: 4px !default;
+
+
+
+
+//============== Bootstrap Variables below this line
+$enable-rounded: false !default;
+$body-color: $color-text-primary !default;
+$primary: $color-brand-primary !default;
+$secondary: $color-cta-primary !default;
+$link-color: $color-cta-primary !default;
+$link-hover-decoration: none !default;
+$modal-backdrop-opacity: 0.25 !default;
+$spacer: 16px !default;
+$spacers: 
+(
+  0: 0,
+  1: ($spacer * .5),
+  2: ($spacer * 1),
+  3: ($spacer * 1.5),
+  4: ($spacer * 3),
+  5: ($spacer * 5)
+) !default;
+
+
+
+
+//============== Typography Variables
+$font-family-sans-serif: inherit !default;
+$headings-font-family: inherit !default; 
+$headings-font-weight: 500 !default;
+$font-size-base: 1.4rem !default; //14px base
+
+$h1-font-size: 4.8rem !default;
+$h2-font-size: 4.8rem !default;
+$h3-font-size: 2.75rem !default;
+$h4-font-size: 2.75rem !default;
+$h5-font-size: 1.65rem !default;
+
+$paragraph-margin-bottom: 0 !default;
+$dt-font-weight: 400 !default;
+$line-height-base: 1.5 !default;
+$headings-margin-bottom: 0 !default;
+
+
+
+//============== Form Variables
+$input-placeholder-color: $color-placeholder !default;
+$input-btn-padding-y: 1.2rem !default;
+$input-btn-padding-x: 2rem !default;
+$input-color: $color-text-primary !default;
+$input-border-color: $color-brand-border !default;
+$input-focus-border-color: $color-brand-border !default;
+$input-btn-focus-box-shadow: none !default;
+$input-btn-line-height: 1.2727272727 !default;
+$btn-block-spacing-y: 20px !default;
+$btn-font-weight: 300 !default;
+
+
+
+//============== Table Variables
+$table-border-color: $color-brand-border !default;

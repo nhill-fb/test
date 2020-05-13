@@ -1,0 +1,68 @@
+<div class="customers">
+  <div class="customers__header">
+    <h1>Account Register</h1>
+  </div>
+
+  <div class="customers__forms">
+
+    <div class="customers__form">
+      {% form 'create_customer' %}
+      {{ form.errors | default_errors }}
+
+      <div class="input__wrapper">
+        <input type="text"
+          name="customer[first_name]"
+          id="FirstName"
+          placeholder="{{ 'customer.register.first_name' | t }}"
+          autofocus
+          {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+
+        <div class="input__error">Please enter your first name.</div>
+      </div>
+
+      <div class="input__wrapper">
+        <input type="text"
+          name="customer[last_name]"
+          id="LastName"
+          placeholder="{{ 'customer.register.last_name' | t }}"
+          {% if form.last_name %}value="{{ form.last_name }}"{% endif %}>
+
+        <div class="input__error">Please enter your last name.</div>
+      </div>
+
+      <div class="input__wrapper">
+        <input type="email"
+          name="customer[email]"
+          id="Email"
+          class="{% if form.errors contains 'email' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.email' | t }}"
+          value="{% if form.email %}{{ form.email }}{% endif %}"
+          spellcheck="false"
+          autocomplete="off"
+          autocapitalize="off">
+
+        <div class="input__error">Please enter a valid email address.</div>
+      </div>
+
+      <div class="input__wrapper">
+        <input type="password"
+          name="customer[password]"
+          id="CreatePassword"
+          class="{% if form.errors contains 'password' %}input-error{% endif %}"
+          placeholder="{{ 'customer.register.password' | t }}">
+
+        <span toggle="#CreatePassword" class="toggle__password show-password">Show</span>
+
+        <div class="input__error">Please enter a password.</div>
+      </div>
+
+      <div class="register__orsignin">
+        <a href="/account/login">or Sign In</a>
+      </div>
+
+      <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn secondary on-light-bg">
+      
+    {% endform %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{%- if settings.body_font_enable -%} 
+  {%- for font in settings.body_font_family.variants -%}
+    {%- if font.weight == '400' or font.weight == '700' -%}
+      {%- if font.style == 'normal' -%}
+        {{- font | font_face -}}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- if settings.heading_font_enable -%}
+  {%- for font in settings.heading_font_family.variants -%}
+    {%- if font.weight == '400' or font.weight == '700' -%}
+      {%- if font.style == 'normal' -%}
+        {{- font | font_face -}}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- if settings.body_font_enable -%}
+body {
+  font-family: {{settings.body_font_family.family }}
+}
+{%- endif -%}
+{%- if settings.heading_font_enable -%}
+  h1, h2, h3, h4, h5, h6,
+  .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: {{settings.heading_font_family.family }}
+  }
+{%- endif -%}
+

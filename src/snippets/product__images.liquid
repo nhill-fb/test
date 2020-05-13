@@ -1,0 +1,10 @@
+<div class="product__images">
+  <carousel
+    :navigation="false" 
+    :pagination="{}"
+    :options='{ mousewheel: true, autoplay: false, touchEventsTarget: "wrapper", direction: "vertical" }'>
+    <div class="swiper-slide" v-for="image in product.images_info">
+      <responsive-img :src="image.src"/>
+    </div>
+  </carousel>
+</div>

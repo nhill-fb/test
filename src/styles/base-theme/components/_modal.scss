@@ -1,0 +1,77 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: $zindex-modal;
+  background: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+
+  &.is-active {
+    display: flex;
+  }
+
+  &-container {
+    background: $modal-content-bg;
+    box-shadow: $modal-content-box-shadow-sm-up;
+    max-width: 80rem;
+    padding: 15px;
+    margin: 10% auto 0;
+    transition: all 0.3s ease;
+
+    @include media-breakpoint-up(md) {
+      padding: 35px;
+      margin-top: 25%;
+    }
+  }
+
+  &-title {
+    font-size: 2.4rem;
+  }
+
+  &-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  &-close {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    right: -1.3px;
+    top: -10px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+      display: block;
+      stroke: $color-cta-primary;
+    }
+
+    &:hover svg {
+      stroke: $color-brand-primary;
+    }
+  }
+}
+
+// Modal animation
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  transform: scale(1.1);
+}

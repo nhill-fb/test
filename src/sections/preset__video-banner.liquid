@@ -1,0 +1,21 @@
+{% include 'template__video' settings: section.settings %}
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "settings": [    
+    {
+      "id": "video",
+      "type": "video_url",
+      "label": "Video",
+      "accept": ["youtube", "vimeo"]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Banner",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

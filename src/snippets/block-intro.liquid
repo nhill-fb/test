@@ -1,0 +1,45 @@
+<div class="block-intro first" data-version="{{ settings.intro_version }}" data-force="{{ settings.intro_ignorecookie }}">
+	{% comment %} <div class="block-intro__videowrap"></div> {% endcomment %}
+	<div class="block-intro__contentwrap">
+	{% if settings.intro_soldout %}
+		<a href="/collections/natural-deodorant" class="intro__soldout">Continue to site</a>
+	{% endif %}
+		<div class="block-intro__content">
+			<p class="block-intro__text-intro">
+			{% if settings.intro_soldout %}
+			We are overwhelmed by your support. Our soft launch inventory has already sold through. Thank you for your patience as we work quickly to be back in stock.
+			{% else %}	
+				{{ settings.intro_text }}
+			{% endif %}
+			</p>
+			{% if settings.intro_soldout %}
+				<p class="small">Want to be notified when we're back in stock?</p>
+				<div class="privy-embed-form" data-campaign="514576"></div>
+			{% endif %}
+			{% if settings.intro_newsletter %}
+				<div class="input__wrapper">
+					<input type="email" name="email" class="input__email__intro" placeholder="Email Address" />
+					<span class="input__error">Please enter a valid email address.</span>
+				</div>
+				<div class="input__wrapper">
+					<input type="text" name="fullname" class="input__fullname__intro" placeholder="Full Name" />
+					<span class="input__error">Please enter your name.</span>
+				</div>
+
+				{% if settings.intro_prelaunch %}
+					<a href="#" class="btn primary on-light-bg btn__intro__emailonly disabled">{{ settings.intro_cta }}</a>
+				{% else %}
+					<a href="/collections/natural-deodorant" class="btn primary on-light-bg btn__intro__email disabled">{{ settings.intro_cta }}</a>
+				{% endif %}
+			{% endif %}
+		</div>
+	</div>
+	{% if settings.intro_newsletter %}
+	{% else %}
+			{% if settings.intro_soldout %}
+				{% comment %} <a href="/collections/natural-deodorant" class="btn__intro__cta intro__soldout">Continue to site</a> {% endcomment %}
+			{% else %}	
+				<a href="/collections/natural-deodorant" class="btn primary on-light-bg btn__intro__cta">{{ settings.intro_cta }}</a>
+			{% endif %}
+	{% endif %}
+</div>

@@ -1,0 +1,222 @@
+{%- capture slides -%}
+  {%- for block in section.blocks -%}
+    {% include 'block-press-item' 
+      logo: block.settings.logo, 
+      quote: block.settings.quote,
+      font_size: section.settings.font_size,
+      line_height: section.settings.line_height,
+      letter_spacing: section.settings.letter_spacing,
+      color: section.settings.color
+    %}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div 
+  class="block-press-wrapper swiper-container"
+  data-columns-on-desktop="{{section.settings.number_of_columns_desktop}}"
+  data-columns-on-tablet="{{section.settings.number_of_columns_tablet}}"
+  data-columns-on-mobile="{{section.settings.number_of_columns_mobile}}"
+  {%- if section.settings.autoplay -%}data-autoplay-speed="{{section.settings.speed}}"{%- endif -%}
+  {%- if section.settings.loop -%}data-loop="true"{%- endif -%}
+>
+  <div class="swiper-wrapper">
+    {{slides}}
+  </div>
+
+  {%- if section.settings.pagination -%}    
+    <div class="swiper-pagination"></div>
+  {%- endif -%}
+
+  {%- if section.settings.navigation -%}   
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  {%- endif -%}  
+</div>
+
+{% schema %}
+{
+  "name": "Press",
+  "class": "block-press",
+  "tag": "section",
+  "settings": [
+    {
+      "id": "navigation",
+      "type": "checkbox",
+      "label": "Enable Navigation",
+      "default": true
+    },
+    {
+      "id": "pagination",
+      "type": "checkbox",
+      "label": "Enable Pagination",
+      "default": true
+    },
+    {
+      "id": "loop",
+      "type": "checkbox",
+      "label": "Infinite Loop",
+      "default": true
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Autoplay Speed",
+      "min": 500,
+      "max": 9500,
+      "step": 500,
+      "default": 3000
+    },
+    {
+      "type": "range",
+      "id": "number_of_columns_desktop",
+      "label": "Number Of Columns Desktop",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "range",
+      "id": "number_of_columns_tablet",
+      "label": "Number Of Columns Tablet",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "number_of_columns_mobile",
+      "label": "Number Of Columns Mobile",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 0,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "line_height",
+      "label": "Line Height",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "em",
+      "default": 1.2
+    },
+    {
+      "type": "range",
+      "id": "letter_spacing",
+      "label": "Letter Spacing",
+      "min": 0,
+      "max": 2,
+      "step": 0.1,
+      "unit": "em",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Color",
+      "default": "#154734"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Item",
+      "type": "item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Logo"
+        },
+        {
+          "id": "logo",
+          "type": "image_picker",
+          "label": "Logo"
+        },
+        {
+          "type": "header",
+          "content": "Quote"
+        },
+        {
+          "id": "quote",
+          "type": "richtext",
+          "label": "Quote"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+  function initPressSection() {
+    var el = $('.block-press-wrapper');
+    var columnsOnDesktop = parseInt(el.data('columns-on-desktop'));
+    var columnsOnTablet = parseInt(el.data('columns-on-tablet'));
+    var columnsOnMobile = parseInt(el.data('columns-on-mobile'));
+    var autoplaySpeed = parseInt(el.data('autoplay-speed'));
+    var loop = el.data('loop');
+    console.log('columnsOnTablet', columnsOnTablet)
+
+    var option = {
+      slidesPerView: columnsOnDesktop,
+      spaceBetween: 60,
+      breakpoints: {
+        989: {
+          slidesPerView: columnsOnTablet,
+          spaceBetween: 40
+        },
+        749: {
+          slidesPerView: columnsOnMobile,
+          spaceBetween: 30
+        }
+      },
+      
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+  
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    }
+
+    if (autoplaySpeed) {
+      option.autoplay = {
+        delay: autoplaySpeed,
+      }
+    }
+
+    if (loop) {
+      option.loop = loop != null
+    }
+
+    var swiper = new Swiper('.block-press-wrapper.swiper-container', option);
+  }  
+
+  initPressSection();
+
+  $(document)
+    .on('shopify:section:load', function() {
+      initPressSection();
+    })
+{% endjavascript %}

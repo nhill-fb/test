@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="text-center text-uppercase">{{ page.title }}</h1>
+  <div class="content row">
+    <div class="col-md-3">
+      {% section 'pages__sidebar-menu' %}
+    </div>
+    <div class="col-md-9">
+      {{ page.content }}
+      {% section 'faqs__accordion' %}
+    </div>
+  </div>
+</div>

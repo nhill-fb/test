@@ -1,0 +1,187 @@
+{%- capture feedOpt -%}
+{%- assign accessToken = section.settings.access-token -%}
+{%- assign userId = accessToken | split: '.' | first -%}
+{
+  "userId": "{{ userId }}",
+  "accessToken": "{{ accessToken }}",
+  "limit": {{section.settings.feed-limit | default: 12}}
+}
+{%- endcapture -%}
+{%- capture slide_attr -%}
+  :options='{ "slidesPerView": {{section.settings.items-desktop}}, spaceBetween: {{section.settings.space_between}}, breakpoints: {767: { slidesPerView: 2, spaceBetween: {{section.settings.space_between | divided_by: 2}} }}, "loop": true, "effect": "{{section.settings.effect}}", "autoplay": {%if section.settings.autoplay %}{ "delay": {{section.settings.speed}} }{%else%}false{%endif%} }'
+{%- endcapture -%}
+<div class="section__instafeed{% if section.settings.custom_html == blank %} vue-instafeed{%endif%}" {% if section.settings.custom_html == blank %}data-options='{{ feedOpt | escape }}'{%endif%} style="background-color:{{section.settings.bg-color}}">
+  <div class="section__instafeed-container">
+    <div class="section__instafeed-heading">
+      <h2>{{section.settings.title}}</h2>
+    </div>
+    {%- if section.settings.custom_html != blank -%}
+      <div class="custom-script">{{section.settings.custom_html}}</div>
+      {%-if section.settings.link_text != blank-%}
+      <a class="section__instafeed-link" href="{{section.settings.link}}">{{section.settings.link_text}}</a>
+      {%-endif-%}
+    {%- elsif section.settings.access-token == blank -%}
+      <h1 class="text-center">Access Token is required</h1>
+    {%-else-%}
+      <carousel class="instafeed-slideshow" {{slide_attr}} v-if="feeds.length" :navigation="{{section.settings.navigation}}" {%if section.settings.dots%}:pagination="{}"{%endif%}>
+        <div class="swiper-slide" v-for="feed in feeds" :key="feed.id">
+          <a :href="feed.link" :style="{ backgroundImage: 'url('+feed.images.standard_resolution.url+')', backgroundSize: '{{section.settings.bg_size}}', backgroundPosition: '{{section.settings.bg_position}}' }"/></a>
+        </div>
+      </carousel>
+      <a class="section__instafeed-link" href="{{section.settings.link}}">{{section.settings.link_text}}</a>
+    {%-endif-%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instagram feed",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "bg-color",
+      "type": "color",
+      "label": "Background"
+    },
+    {
+      "id": "link",
+      "type": "url",
+      "label": "Instagram Link"
+    },
+    {
+      "id": "link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "View All"
+    },
+    {
+      "type": "header",
+      "content": "Custom 3rd Party Script"
+    },
+    {
+      "type": "html",
+      "label": "Html & Script",
+      "id": "custom_html"
+    },
+    {
+      "type": "header",
+      "content": "Instafeed.js"
+    },
+    {
+      "id": "access-token",
+      "type": "text",
+      "label": "Access Token",
+      "info": "example: 4385108.234ee22.845872ba322e234d88c9934"
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Autoplay Speed",
+      "min": 500,
+      "max": 9500,
+      "step": 500,
+      "default": 3000
+    },
+    {
+      "type": "select",
+      "id": "effect",
+      "label": "Slide Animation",
+      "default": "slide",
+      "options": [        
+        { "label": "Slide", "value": "slide" },
+        { "label": "Fade", "value": "fade" },
+        { "label": "Cube", "value": "cube" },
+        { "label": "Coverflow", "value": "coverflow" },
+        { "label": "Flip", "value": "flip" } 
+      ]
+    },
+    {
+      "id": "items-desktop",
+      "type": "range",
+      "label": "Number of images",
+      "min": 1,
+      "max": 10,
+      "default": 4
+    },
+    {
+      "id": "feed-limit",
+      "type": "range",
+      "label": "Max number of images",
+      "min": 1,
+      "max": 20,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "id": "navigation",
+      "type": "checkbox",
+      "label": "Enable Navigation Arrows",
+      "default": true
+    },
+    {
+      "id": "dots",
+      "type": "checkbox",
+      "label": "Enable Dots",
+      "default": false
+    },
+    {
+      "id": "space_between",
+      "type": "range",
+      "label": "Space between slides",
+      "min": 0,
+      "max": 100,
+      "default": 30,
+      "info": "Mobile spacing will be half of this value"
+    },
+    {
+      "id": "bg_size",
+      "type": "select",
+      "label": "Image Background Size",
+      "options": [
+        {
+          "label": "Contain",
+          "value": "contain"
+        },
+        {
+          "label": "Cover",
+          "value": "cover"
+        }
+      ],
+      "default": "cover"
+    },
+    {
+      "id": "bg_position",
+      "type": "select",
+      "label": "Image Background Position",
+      "options": [
+        { "label": "top left", "value": "top left" },
+        { "label": "top center", "value": "top center" },
+        { "label": "top right", "value": "top right" },
+        { "label": "center left", "value": "center left" },
+        { "label": "center center", "value": "center center" },
+        { "label": "center right", "value": "center right" },
+        { "label": "bottom left", "value": "bottom left" },
+        { "label": "bottom center", "value": "bottom center" },
+        { "label": "bottom right", "value": "bottom right" }
+      ],
+      "default": "center center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram Feed",
+      "category": "Social Feeds"
+    }
+  ]
+}
+{% endschema %}

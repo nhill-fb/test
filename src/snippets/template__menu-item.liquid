@@ -1,0 +1,11 @@
+
+{%- if menu != blank and menu.links != blank-%}
+<ul class="{{list_class}}">
+  {%- for item in menu.links -%}
+  <li>
+    <a href="{{item.url}}">{{item.title}}</a>
+    {%- include 'template__menu-item' menu: item, list_class: '' -%}
+  </li>
+  {%- endfor -%}
+</ul>
+{%- endif -%}
