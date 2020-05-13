@@ -1,0 +1,34 @@
+
+<div class="sidebar-menu">
+{% for block in section.blocks %}
+  {%- if block.settings.binding-collection == blank or block.settings.binding-collection == collection.handle -%}
+  {%- assign menu = linklists[block.settings.menulist] -%}
+  {%- include 'template__menu-item' list_class: 'submenu', menu: menu -%}
+  {%- endif -%}
+{% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Sidebar Menu",
+  "blocks": [
+    {
+      "name": "Sidebar Menu",
+      "type": "menu_block",
+      "settings": [
+        {
+          "id": "binding-collection",
+          "type": "collection",
+          "label": "Collection to show menu",
+          "info": "Leave blank to use this menu on all collection pages"
+        },
+        {
+          "id": "menulist",
+          "type": "link_list",
+          "label": "Menu to use"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

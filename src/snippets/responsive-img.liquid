@@ -1,0 +1,54 @@
+
+{%- assign size1 = '320x' -%}
+{%- assign size2 = '480x' -%}
+{%- assign size3 = '640x' -%}
+{%- assign size4 = '800x' -%}
+{%- assign size5 = '960x' -%}
+{%- assign size6 = '1280x' -%}
+{%- assign size7 = '1440x' -%}
+{%- assign size8 = '1600x' -%}
+{%- assign size9 = '2000x' -%}
+{%- if image != blank and image.src != blank -%}
+  {%- assign src = image.src -%}
+  {%- assign alt = image.alt -%}
+{%- elsif src == blank -%}
+  {%- assign src = image -%}
+{%- endif -%}
+{%- if src contains '.png' -%}
+{%- assign size1Src = src | img_url: size1 -%}
+{%- assign size2Src = src | img_url: size2 -%}
+{%- assign size3Src = src | img_url: size3 -%}
+{%- assign size4Src = src | img_url: size4 -%}
+{%- assign size5Src = src | img_url: size5 -%}
+{%- assign size6Src = src | img_url: size6 -%}
+{%- assign size7Src = src | img_url: size7 -%}
+{%- assign size8Src = src | img_url: size8 -%}
+{%- assign size9Src = src | img_url: size9 -%}
+{%-else-%}
+{%- assign size1Src = src | img_url: size1, format: 'pjpg' -%}
+{%- assign size2Src = src | img_url: size2, format: 'pjpg' -%}
+{%- assign size3Src = src | img_url: size3, format: 'pjpg' -%}
+{%- assign size4Src = src | img_url: size4, format: 'pjpg' -%}
+{%- assign size5Src = src | img_url: size5, format: 'pjpg' -%}
+{%- assign size6Src = src | img_url: size6, format: 'pjpg' -%}
+{%- assign size7Src = src | img_url: size7, format: 'pjpg' -%}
+{%- assign size8Src = src | img_url: size8, format: 'pjpg' -%}
+{%- assign size9Src = src | img_url: size9, format: 'pjpg' -%}
+{%-endif-%}
+<div class="img{%if class %} {{class}}{%endif%}{%if withZoom%} swiper-zoom-container{%endif%}" {% if withZoom %}data-swiper-zoom="5"{%-endif-%}>
+{%- if lazyload -%}
+<img class="lazyload" {%if alt %}alt="{{alt | escape}}"{%-endif-%} {%if attr %}{{attr}}{%-endif-%}
+  data-src="{{size3Src}}"
+  data-srcset="{{ size1Src }} {{size1 | replace: 'x', 'w'}}, {{ size2Src }} {{size2 | replace: 'x', 'w'}}, {{ size3Src }} {{size3 | replace: 'x', 'w'}},
+  {{ size4Src }} {{size4 | replace: 'x', 'w'}}, {{ size5Src }} {{size5 | replace: 'x', 'w'}}, {{ size6Src }} {{size6 | replace: 'x', 'w'}},
+  {{ size7Src }} {{size7 | replace: 'x', 'w'}}, {{ size8Src }} {{size8 | replace: 'x', 'w'}}, {{ size9Src }} {{size9 | replace: 'x', 'w'}}"
+  data-sizes="auto" />
+{%- else -%}
+<img {%if alt %}alt="{{alt | escape}}"{%-endif-%} {%if attr %}{{attr}}{%-endif-%}
+  src="{{size3Src}}"
+  srcset="{{ size1Src }} {{size1 | replace: 'x', 'w'}}, {{ size2Src }} {{size2 | replace: 'x', 'w'}}, {{ size3Src }} {{size3 | replace: 'x', 'w'}},
+  {{ size4Src }} {{size4 | replace: 'x', 'w'}}, {{ size5Src }} {{size5 | replace: 'x', 'w'}}, {{ size6Src }} {{size6 | replace: 'x', 'w'}},
+  {{ size7Src }} {{size7 | replace: 'x', 'w'}}, {{ size8Src }} {{size8 | replace: 'x', 'w'}}, {{ size9Src }} {{size9 | replace: 'x', 'w'}}"
+  sizes="(max-width: 767px) 95vw, 60vw" />
+{%- endif -%}
+</div>

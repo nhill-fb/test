@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="30px" viewBox="0 0 16 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Navigational</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="04_1280_PDP-(Full-Page)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-403.000000, -400.000000)">
+        <g id="Navigational" transform="translate(412.500000, 415.000000) rotate(90.000000) translate(-412.500000, -415.000000) translate(392.500000, 394.500000)">
+            <rect id="Rectangle-2" x="0" y="1" width="40" height="40"></rect>
+            <path d="M10,5 L28,5 C29.1045695,5 30,5.8954305 30,7 L30,25" id="Rectangle-3" stroke="#154734" stroke-width="2" transform="translate(20.000000, 15.000000) rotate(-225.000000) translate(-20.000000, -15.000000) "></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,26 @@
+<div class="header__logo">
+  {% if template.name == 'index' %}
+    <h1 itemscope itemtype="http://schema.org/Organization">
+  {% else %}
+    <div class="h1" itemscope itemtype="http://schema.org/Organization">
+  {% endif %}
+      <a href="/" itemprop="url" class="header__logo-link">
+        {%- if section.settings.logo != blank -%}
+          {%- assign width = section.settings.logo_desktop_width | times: 1.3 | ceil | append: 'x'-%}
+          <img src="{{ section.settings.logo | img_url: width }}"{%- if section.settings.logo_mobile != blank -%} class="d-none d-md-block"{%-endif-%}
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              itemprop="logo">
+        {%- endif -%}
+        {%- if section.settings.logo_mobile != blank -%}
+          {%- assign width = section.settings.logo_mobile_width | times: 1.3 | ceil | append: 'x'-%}
+          <img src="{{ section.settings.logo_mobile | img_url: width }}" class="d-md-none"
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              itemprop="logo">
+        {%- endif -%}
+      </a>
+  {% if template.name == 'index' %}
+    </h1>
+  {% else %}
+    </div>
+  {% endif %}
+</div>

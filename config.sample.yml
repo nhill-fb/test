@@ -1,0 +1,6 @@
+development:
+  password: 
+  theme_id: 
+  store: mydomain.myshopify.com
+  ignore_files:
+    - settings_data.json

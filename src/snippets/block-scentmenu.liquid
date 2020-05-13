@@ -1,0 +1,16 @@
+<div class="block-scentmenu">
+	<div class="block-scentmenu__content">
+		<ul class="block-scentmenu__menu">
+			{% for product in collections.natural-deodorant.products %}
+				<li><a href="#" class="block-scentmenu__menu__link" data-product-id="{{ product.id }}">{{ product.title }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="block-scentmenu__loader">
+		{% for product in collections.natural-deodorant.products %}
+			<div class="block-scentmenu__moment" data-product-id="{{ product.id }}" style="background-image: url('{{ product.metafields.accentuate.scent_moment_image }}');"></div>
+		{% endfor %}
+	</div>
+	<a href="#" class="block-scentmenu__close">{% include 'icon-close-corpus' %}</a>
+	<a href="/cart" class="btn__cart"><div class="block-scentmenu__carticon"><span class="count"></span></div></a>
+</div>

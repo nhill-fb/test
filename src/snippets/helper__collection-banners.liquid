@@ -1,0 +1,72 @@
+{%- assign defaultBanner1 = '' -%}
+{%- assign defaultBanner2 = '' -%}
+{%- assign banner1 = '' -%}
+{%- assign banner2 = '' -%}
+{%- assign hero_banner = '' -%}
+{%- for block in section.blocks -%}
+  {%- if block.settings.linked-collection == blank and block.type == 'inline-banner' -%}
+    {%- if defaultBanner1 == '' -%}
+      {%- assign defaultBanner1 = block -%}
+    {%- elsif defaultBanner2 == '' -%}
+      {%- assign defaultBanner2 = block -%}
+    {%- endif -%}
+  {%- elsif collection.handle == block.settings.linked-collection -%}
+    {%- if block.type == 'inline-banner' -%}
+      {%- if banner1 == blank -%}
+        {%- assign banner1 = block -%}
+      {%- elsif banner2 == blank -%}
+        {%- assign banner2 = block -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign _hero_banner = block -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if banner1 == blank -%}
+  {%- assign banner1 = defaultBanner1 -%}
+{%- endif -%}
+{%- if banner2 == blank -%}
+  {%- assign banner2 = defaultBanner2 -%}
+{%- endif -%}
+{%- capture inline_banner1 -%}
+  {%- include 'inline-banner' banner: banner1 -%}
+{%- endcapture -%}
+{%- capture inline_banner2 -%}
+  {%- include 'inline-banner' banner: banner2 -%}
+{%- endcapture -%}
+{%- if _hero_banner != blank -%}
+  {%- capture hero_banner -%}
+    {%- assign padding = 
+      _hero_banner.settings.padding-type-top-bottom 
+        | append: _hero_banner.settings.padding-top-bottom 
+        | append: ' '
+        | append: _hero_banner.settings.padding-type-left-right
+        | append: _hero_banner.settings.padding-left-right
+    -%}
+    {%- include 'template__image-text' 
+      title: _hero_banner.settings.title,
+      container: _hero_banner.settings.container,
+      subtitle: _hero_banner.settings.subtitle, 
+      body_text: _hero_banner.settings.message,
+      text_align: _hero_banner.settings.text_align,
+      width: _hero_banner.settings.message_width,
+      text_layout: _hero_banner.settings.text_layout,
+      text_pos: _hero_banner.settings.text_pos,
+      text_pos_mobile: _hero_banner.settings.text_pos_mobile,
+      link_text: _hero_banner.settings.link_text,
+      img: _hero_banner.settings.image,
+      btn_color: _hero_banner.settings.btn_color,
+      btn_bg: _hero_banner.settings.btn_bg,
+      mobile_image: _hero_banner.settings.image_mobile,
+      bg: _hero_banner.settings.bg, 
+      color: _hero_banner.settings.color,
+      link: _hero_banner.settings.link,
+      link_type: _hero_banner.settings.link_type,
+      padding: padding 
+    -%}
+  {%- endcapture -%}
+{%- else -%}
+  {%- capture hero_banner -%}
+    <h1 class="collection__title">{{collection.title}}</h1>
+  {%- endcapture -%}
+{%- endif -%}

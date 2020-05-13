@@ -1,0 +1,40 @@
+{%- assign isprimary = primary | default: false -%}
+{%-assign selected_variant = product.selected_or_first_available_variant -%}
+{%- capture opts -%}
+[
+  {%- for option in model.options_with_values -%}
+  {%- assign optionPosition = "option" | append: option.position -%}
+  {%- capture option_values -%}
+    [{%- for optVal in option.values -%}
+      { "title": {{optVal | json}} }{%-unless forloop.last-%},{%-endunless-%}
+    {%- endfor -%}]
+  {%- endcapture -%}
+  { "name": {{option.name | json}}, "position": {{option.position | json }}, "selected_value": {{ selected_variant[optionPosition] | json }}, "values": {{option_values}} }{%- unless forloop.last -%},{%-endunless-%}
+  {%- endfor -%}
+]
+{%- endcapture -%}
+{%- capture variantjson -%}
+[
+  {%- for v in model.variants -%}
+  {%- assign merged_opt = "" -%}
+  {%- for opt in model.options -%}
+    {%- assign opthandle = opt | handle -%}
+    {%- assign optvalue = 'option' | append: forloop.index -%}
+    {%- assign merged_opt = merged_opt | append: opthandle | append: ':' | append: v[optvalue] -%}
+    {%- unless forloop.last -%}{%- assign merged_opt = merged_opt | append: '|' -%}{%-endunless-%}
+  {%- endfor -%}
+  {"available":{{v.available | json}},"merged_options":{{merged_opt | split: '|' | json}},"compare_at_price": {{v.compare_at_price | json }},"id": {{v.id}},"product_id": {{model.id}},"image": {{v.image | json}},"inventory_management": {{v.inventory_management | json}},"inventory_quantity": {{v.inventory_quantity}},"option1":{{v.option1 | json}},"option2":{{v.option2 | json}},"option3":{{v.option3 | json}},"price":{{v.price | json}}}
+  {%-unless forloop.last-%},{%-endunless-%}
+  {%- endfor -%}
+]
+{%- endcapture -%}
+{%- capture ptags -%}
+[ {%- for iptag in model.tags -%}{{iptag | downcase | json}}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%} ]
+{%- endcapture -%}
+{%- capture images -%}
+  {%- for img in model.images -%}
+    { "src": {{img.src | json}} }
+    {%-unless forloop.last-%},{%-endunless-%}
+  {%- endfor -%}
+{%- endcapture -%}
+{"id":{{model.id | json}},"product_type":{{model.type | json}},"available":{{model.available | json}},"title": {{model.title | json}},"handle":{{model.handle | json}},"images_info":[{{images}}],"tags":{{ptags}},"variants":{{variantjson}},"options_with_values":{{opts}} }

@@ -1,0 +1,55 @@
+.newsletter__section {
+  margin-bottom: 80px;
+
+  .form-group {
+    position: relative;
+  }
+
+  .form-label {
+    font-weight: 600;
+  }
+
+  .input-group {
+    border-bottom: 1px solid #000;
+  }
+
+  .form-control {
+    border: 0;
+    padding-left: 0;
+  }
+
+  .newsletter__submit {
+    border: 0;
+    padding: 0;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-size: 2rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .form-label {
+    position: absolute;
+    bottom: -35px;
+  }
+}
+
+
+@include media-breakpoint-up(md) {
+  .newsletter__section {
+    margin-bottom: 50px;
+
+    .form-label {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+
+@include media-breakpoint-up(lg) {
+  .newsletter__section {
+    .form-control {
+      width: 400px;
+    }
+  }
+}

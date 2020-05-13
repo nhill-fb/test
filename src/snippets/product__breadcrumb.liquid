@@ -1,0 +1,13 @@
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  {% if template contains 'page' %}
+    <span aria-hidden="true">></span>
+    <span>{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+    {% assign product_collection = product.collections.first %}
+    {% if product_collection %}
+      {{ product_collection.title | link_to: product_collection.url }}
+      <span aria-hidden="true">></span>
+    {% endif %}
+    <span>{{ product.title }}</span>
+  {% endif %}
+</nav>

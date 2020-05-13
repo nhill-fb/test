@@ -1,0 +1,79 @@
+<div class="customers">
+	<div class="customers__header">
+		<h1>Account Sign In</h1>
+	</div>
+
+	<div class="customers__forms">
+
+		<div id="CustomerLoginForm" class="customers__form">
+		  {% form 'customer_login' %}
+		    {{ form.errors | default_errors }}
+
+		    <div class="input__wrapper {% if form.errors contains 'email' %}input__wrapper--error{% endif %}">
+		    	<input type="email"
+		           name="customer[email]"
+		           id="CustomerEmail"
+		           class="{% if form.errors contains 'email' %}input-error{% endif %}"
+		           placeholder="{{ 'customer.login.email' | t }}"
+		           spellcheck="false"
+		           autocomplete="off"
+		           autocapitalize="off"
+		           autofocus>
+
+		           <div class="input__error">Please enter a valid email address.</div>
+		    </div>
+
+		    <div class="input__wrapper {% if form.errors contains 'password' %}input__wrapper--error{% endif %}">
+		    	<input type="password"
+		             name="customer[password]"
+		             id="CustomerPassword"
+		             class="{% if form.errors contains 'password' %}input-error{% endif %}"
+		             placeholder="{{ 'customer.login.password' | t }}">
+
+					<span toggle="#CustomerPassword" class="toggle__password show-password">Show</span>
+
+		        <div class="input__error">Please enter a password.</div>
+		    </div>
+
+		    <div class="login__regforgot">
+		    	<a href="/account/register">Register</a>
+		    	<a href="#recover" id="RecoverPassword">Forgot Password</a>
+		    </div>
+
+		    <input type="submit" class="btn secondary on-light-bg" value="Sign In">
+
+		  {% endform %}
+		</div>
+
+		<div id="RecoverPasswordForm" class="customers__form hide">
+		  <h2>{{ 'customer.recover_password.subtext' | t }}</h2>
+
+		  {% form 'recover_customer_password' %}
+		    {{ form.errors | default_errors }}
+
+		    {% if form.posted_successfully? %}
+		      <span class="hide reset-password-success"></span>
+		    {% endif %}
+
+		    <div class="input__wrapper">
+			    <input type="email"
+			           name="email"
+			           id="RecoverEmail"
+			           placeholder="{{ 'customer.recover_password.email' | t }}"
+			           spellcheck="false"
+			           autocomplete="off"
+			           autocapitalize="off">
+
+			    <div class="input__error">Please enter a valid email address.</div>
+			</div>
+
+			<div class="login__recover">
+		    	<a href="#" id="HideRecoverPasswordLink">or Cancel</a>
+		    </div>
+
+		    <input type="submit" class="btn secondary on-light-bg" value="{{ 'customer.recover_password.submit' | t }}">
+		  {% endform %}
+		</div>
+
+	</div>
+</div>

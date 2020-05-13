@@ -1,0 +1,81 @@
+
+.template-page {
+  &.contact-us {
+    .rte {
+      text-transform: uppercase;
+    }
+
+    #ContactFormMessage {
+      height: 196px;
+    }
+  }
+
+  .rte {
+    margin: 0 auto 50px;
+
+    a {
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    strong,
+    b {
+      font-weight: 700;
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.sizechart {
+  &__container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  &__chart {
+    margin-bottom: 70px;
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+  }
+}
+
+.back-link {
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 15px;
+
+  svg {
+    width: 8px;
+    height: 8px;
+    margin-right: 5px;
+
+    path {
+      fill: $color-brand-primary;
+    }
+  }
+}
+
+.page404__container {
+  @extend .container;
+}

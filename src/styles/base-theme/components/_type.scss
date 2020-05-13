@@ -1,0 +1,19 @@
+blockquote {
+  @extend .blockquote;
+
+  font-family: $headings-font-family;
+  font-size: 2.5rem;
+  font-style: italic;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@include media-breakpoint-down(sm) {
+  h1, .h1, h2, .h2 {
+    font-size: 2.1rem;
+  }
+}

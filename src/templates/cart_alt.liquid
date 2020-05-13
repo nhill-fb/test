@@ -1,0 +1,147 @@
+<div class="cart" id="vue-cart" hidden :hidden="!cart.token">
+  <div class="cart__container">
+    <h1 class="cart__title">{{ 'cart.general.title' | t }}</h1>
+
+    {% unless customer %}
+        <div class="cart__sign-in">
+          <p>{{ 'cart.general.sign_in' | t: shop: shop.name }}</p>
+          <button type="text" class="btn btn-primary">Sign in</button>
+        </div>
+    {% endunless %}
+    
+    {% if cart.item_count > 0 %}
+    <div class="container-fluid">
+      <div class="table-responsive">
+        <table class="cart__table table w-100"> 
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>{{ 'cart.label.price' | t }}</th>
+              <th>{{ 'cart.label.quantity' | t }}</th>
+              <th>{{ 'cart.label.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% comment %}
+
+            Cart Item Template
+            =====================
+            The data-label attributes on <td> elements are mobile-friendly
+            helpers used for responsive-table labels
+            {% endcomment %}
+            <tr class="cart__item" v-for="item in cart.items">
+              <td class="cart__item-image" data-label="{{ 'customer.order.product' | t }}">
+                <a class="cart__item-link" :href="item.url">
+                  <div class="cart__item-image" v-if="item.image">
+                    <img :src="getImage(item.image, '160x')" :alt="item.product_title" />
+                  </div>
+                </a>
+              </td>
+              <td class="cart__item-description">
+                <div class="cart__item-options">
+                  <a class="cart__item-title" :href="item.url">${ item.product_title }</a>
+
+                  <dl class="cart__item-option" v-for="opt in item.variant_options">
+                    <dd>${opt}</dd>
+                  </dl>
+                
+                  <dl class="cart__item-property" v-if="item.properties" v-for="(val,key) in item.properties">
+                    <dt>${key}</dt>
+                    <dd>${val}</dd>                  
+                  </dl>
+                </div>
+                <a class="cart__item-remove" href="#" @click="removeItem(item)">
+                  {{ 'cart.general.remove' | t }}
+                </a>
+              </td>
+              <td class="cart__item-price" data-label="{{ 'cart.label.price' | t }}">
+                <div v-if="item.original_line_price != item.line_price">
+                  <span class="visually-hidden discounted">{{ 'cart.label.discounted_price' | t }}</span>
+                  <em>${ item.price | money }</em>
+                  <span class="visually-hidden original">{{ 'cart.label.original_price' | t }}</span>
+                  <s>${ item.original_price | money }</s>
+                </div>
+                <div v-else>
+                  ${ item.price | money }
+                </div>
+              </td>
+              <td class="cart__item-quantity" data-label="{{ 'cart.label.quantity' | t }}">
+                <input type="number"
+                      :value="item.quantity"
+                      @change="updateQty(item, $event.target.value)"
+                      min="0"
+                      size="2"
+                      class="form-control"
+                      aria-label="{{ 'cart.general.item_quantity' | t }}">
+              </td>
+              <td class="cart__item-total" data-label="{{ 'cart.label.total' | t }}">
+                ${ item.line_price | money }
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        {% comment %} {% if settings.cart_notes_enable %}
+          <div class="col-md-7 cart__notes-container">
+            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+            <textarea name="note" class="form-control" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+          </div>
+        {% endif %} {% endcomment %}
+        <div class="col-md-5 text-right cart__summary{% unless settings.cart_notes_enable %} offset-md-7{%endunless%}">
+          <dl class="cart__subtotal">
+            <dt>{{ 'cart.general.subtotal' | t }}</dt>
+            <dd>
+              <span class="money">${ cart.total_price | money }</span>
+            </dd>
+          </dl>
+          <dl class="cart_savings" v-if="cart.total_discounts > 0">
+            <dt>{{ 'cart.general.savings' | t }}</dt>
+            <dd>
+              <span class="money">${ cart.total_discounts | money }</span>
+            </dd>
+          </dl>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-7 offset-md-5">
+          <p class="cart__ship-msg text-right">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+        </div>
+      </div>
+      <div class="row cart__buttons">
+        <div class="col-md-5 offset-md-3">
+          <a href="/collections/all" class="btn btn-outline-primary btn-block">{{'cart.general.continue_shopping' | t}}</a>
+        </div>
+        {% comment %} <div class="col-md-3">
+          <input type="submit" name="update" class="btn btn-outline-primary btn-block" value="{{ 'cart.general.update' | t }}">
+        </div> {% endcomment %}
+        <div class="col-md-4">
+          <a href="/checkout" class="btn btn-primary btn-block">{{ 'cart.general.checkout' | t }}</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+      {% comment %}
+      Cart empty state
+      {% endcomment %}
+      <div class="cart__supports-cookies">
+        <p>{{ 'cart.general.empty' | t }}</p>
+        <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+      </div>
+
+      {% comment %}
+      Cart no cookies state
+      ---------------------
+      Browser cookies are required to use the cart. If cookies aren't enabled in the
+      browser a message is displayed prompting the user to enable them.
+      {% endcomment %}
+      <div class="cart__supports-no-cookies">
+        <p>{{ 'cart.general.cookies_required' | t }}</p>
+      </div>
+    {% endif %}
+  </div>
+</div>

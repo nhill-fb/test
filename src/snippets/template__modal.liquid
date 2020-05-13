@@ -1,0 +1,8 @@
+<modal class="{{class_name}}" {{attr}}>
+  {%- if modal_title != blank -%}
+  <h5 class="modal-title" slot="header">{{ modal_title }}</h5>
+  {%- endif -%}
+  <div class="content" slot="body">
+    {{ modal_body_content }}
+  </div>
+</modal>

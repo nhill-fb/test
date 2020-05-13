@@ -1,0 +1,167 @@
+{% if section.settings.show_related_products == true %}
+
+<div class="product__related vue-related-products" itemscope itemtype="http://schema.org/Product" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true">
+ 
+{% comment %}
+  Number of related items per row,
+  and number of rows.
+{% endcomment %}
+
+{% assign number_of_related_products_per_row = section.settings.number_of_products %}
+{% assign number_of_rows = 1 %}
+
+{% comment %}
+  Heading.
+  Leave blank if you don't need one.
+{% endcomment %}
+
+{% assign heading = section.settings.related_title %}
+
+{% comment %}
+  Set either or both to true, if you want
+  to limit yourself to items with same vendor, and/or type.
+{% endcomment %}
+
+{% assign same_vendor = false %}
+{% assign same_type = false %}
+
+{% comment %}
+  Collections to ignore.
+  Never pick related items from those.
+{% endcomment %}
+
+{% assign exclusions = 'frontpage,all' | split: ',' %}
+
+{% comment %}
+  Looking for a relevant collection.
+{% endcomment %}
+{% if section.settings.collection != blank %}
+  {% assign collection = collections[section.settings.collection] %}
+{% elsif product.metafields.c_f['Related Products'] %}
+  {% assign collection = collections[product.metafields.c_f['Related Products']] %}
+{% endif %}
+
+{% assign found_a_collection = false %}
+{% if collection and collection.all_products_count > 1 %}
+  {% unless exclusions contains collection.handle %}
+    {% assign found_a_collection = true %}
+  {% endunless %}
+{% endif %}
+{% unless found_a_collection %}
+  {% for c in product.collections %}
+    {% unless exclusions contains c.handle or c.all_products_count < 2 %}
+      {% assign found_a_collection = true %}
+      {% assign collection = c %}
+      {% break %}
+    {% endunless %}
+  {% endfor %}
+{% endunless %}
+
+{% comment %}
+  If we have a relevant collection.
+{% endcomment %}
+
+{% if found_a_collection %}
+
+  {% assign counter = 0 %}
+  {% assign break_at = number_of_rows | times: number_of_related_products_per_row %}
+  {% assign current_product = product %}
+
+  {% capture related_items %}
+    {% for product in collection.products limit: 25 %}
+      {% if current_product != blank %}
+        {% unless product.handle == current_product.handle %}
+          {% unless same_vendor and current_product.vendor != product.vendor %}
+            {% unless same_type and current_product.type != product.type %}
+              {% include 'product__item' %}
+
+              {% assign counter = counter | plus: 1 %}
+              {% if counter == break_at %}
+                {% break %}
+              {% endif %}
+            {% endunless %}
+          {% endunless %}
+        {% endunless %}
+      {% else %}
+        {% include 'product__item' %}
+        {% assign counter = counter | plus: 1 %}
+        {% if counter == break_at %}
+          {% break %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+
+  {% assign related_items = related_items | trim %}
+
+  {% unless related_items == blank %}
+
+  <aside class="product__related-container" style="background-color: {{section.settings.bg}}">
+    {% unless heading == blank %}
+    <header class="product__related-header">
+      <h3 class="product__related-title">{{ heading }}</h3>
+    </header>
+    {% endunless %}
+    <div class="collection__body">
+      <collection class="collection__grid" :list="related_product_groups" :carousel-options="{}">
+        {{ related_items }}
+      </collection>
+    </div>
+  </aside>
+
+  {% endunless %}
+     
+{% endif %}
+  
+</div>
+
+{%- include 'json__products' list: collection.products, limit: 25, same_vendor: same_vendor, same_type: same_type, compare_product: current_product, break_at: break_at -%}
+
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Related/Featured products",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related_products",
+      "label": "Show related/featured products",
+      "default": true
+    },
+    {
+      "id": "bg",
+      "type": "color",
+      "label": "Background",
+      "default": "#fcf6f6"
+    },
+    {
+      "id": "related_title",
+      "type": "text",
+      "label": "Section title",
+      "default": "Recommended"
+    },
+    {
+      "id": "number_of_products",
+      "type": "range",
+      "label": "Number of Products To Show",
+      "min": 3,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "id": "collection",
+      "label": "Featured Collection",
+      "type": "collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

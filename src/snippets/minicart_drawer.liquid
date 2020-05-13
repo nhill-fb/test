@@ -1,0 +1,10 @@
+{%- unless settings.minicart_use_dropdown -%}
+<div class="vue-cart">
+  <drawer :position="'right'" :id="'cart-drawer'" :header="''" :is-open="cartDrawerIsOpen" @close="closeCartDrawer">
+    <template #header>
+      <h5 class="drawer__title">{{ 'cart.general.title' | t }}</h5> 
+    </template>
+    <minicart></minicart>
+  </drawer>
+</div>
+{%- endunless -%}

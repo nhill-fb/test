@@ -1,0 +1,131 @@
+
+{%- case block.type -%}
+  {%- when 'text-image' -%}
+    <div class="content__image-text {{block.settings.contained}}">
+      {%- assign padding = 
+        block.settings.padding-type-top-bottom 
+          | append: block.settings.padding-top-bottom 
+          | append: ' '
+          | append: block.settings.padding-type-left-right
+          | append: block.settings.padding-left-right
+      -%}
+      {%- include 'template__image-text' 
+        title: block.settings.title,
+        container: block.settings.container,
+        subtitle: block.settings.subtitle, 
+        body_text: block.settings.message,
+        text_align: block.settings.text_align,
+        width: block.settings.message_width,
+        text_layout: block.settings.text_layout,
+        text_pos: block.settings.text_pos,
+        text_pos_mobile: block.settings.text_pos_mobile,
+        link_text: block.settings.link_text,
+        img: block.settings.image,
+        btn_color: block.settings.btn_color,
+        btn_bg: block.settings.btn_bg,
+        mobile_image: block.settings.image_mobile,
+        bg: block.settings.bg, 
+        color: block.settings.color,
+        link: block.settings.link,
+        link_type: block.settings.link_type, 
+        padding: padding,
+        content_width: block.settings.width,
+        lazyload: lazyload -%}
+    </div>
+  {%- when 'video' -%}
+    <div class="content__video" style="background-color:{{block.settings.bg}}">
+      <div class="content__video-container">
+        {% if block.settings.title != blank %}
+        <h2>{{block.settings.title}}</h2>
+        {% endif %}
+        {% if block.settings.subtitle != blank %}
+        <h3>{{block.settings.subtitle}}</h3>
+        {% endif %}
+        {%- include 'template__video' settings: block.settings -%}
+      </div>
+    </div>
+  {%- when 'two-cols-text-image' -%}
+    {%- capture leftbanner -%}
+      {%- assign padding = 
+        block.settings.left_padding-type-top-bottom 
+          | append: block.settings.left_padding-top-bottom 
+          | append: ' '
+          | append: block.settings.left_padding-type-left-right
+          | append: block.settings.left_padding-left-right
+      -%}
+      {%- include 'template__image-text' 
+        title: block.settings.left_title,
+        subtitle: block.settings.left_subtitle, 
+        body_text: block.settings.left_message,
+        text_align: block.settings.left_text_align,
+        width: block.settings.left_message_width,
+        text_layout: block.settings.left_text_layout,
+        text_pos: block.settings.left_text_pos,
+        text_pos_mobile: block.settings.left_text_pos_mobile,
+        link_text: block.settings.left_link_text,
+        img: block.settings.left_image,
+        btn_color: block.settings.left_btn_color,
+        btn_bg: block.settings.left_btn_bg,
+        mobile_image: block.settings.left_image_mobile,
+        bg: block.settings.left_bg, 
+        color: block.settings.left_color,
+        link: block.settings.left_link,
+        padding: padding,
+        link_type: block.settings.left_link_type -%}
+    {%-endcapture-%}
+    {%- capture rightbanner -%}
+      {%- assign padding = 
+        block.settings.right_padding-type-top-bottom 
+          | append: block.settings.right_padding-top-bottom 
+          | append: ' '
+          | append: block.settings.right_padding-type-left-right
+          | append: block.settings.right_padding-left-right
+      -%}
+      {%- include 'template__image-text' 
+        title: block.settings.right_title,
+        subtitle: block.settings.right_subtitle, 
+        body_text: block.settings.right_message,
+        text_align: block.settings.right_text_align,
+        width: block.settings.right_message_width,
+        text_layout: block.settings.right_text_layout,
+        text_pos: block.settings.right_text_pos,
+        text_pos_mobile: block.settings.right_text_pos_mobile,
+        link_text: block.settings.right_link_text,
+        img: block.settings.right_image,
+        btn_color: block.settings.right_btn_color,
+        btn_bg: block.settings.right_btn_bg,
+        mobile_image: block.settings.right_image_mobile,
+        bg: block.settings.right_bg, 
+        color: block.settings.right_color,
+        link: block.settings.right_link,
+        padding: padding,
+        link_type: block.settings.right_link_type -%}
+    {%- endcapture -%}
+    {%- assign leftwidth = 'col-md-' | append: block.settings.left_width -%}
+    {%- include 'template__two-col' 
+      container: block.settings.container
+      swap: block.settings.swap, 
+      left_width: leftwidth, 
+      leftcol_content: leftbanner, 
+      rightcol_content: rightbanner -%}
+
+  {%- when 'text' -%}
+    {%- assign padding = 
+      block.settings.padding-type-top-bottom 
+        | append: block.settings.padding-top-bottom 
+        | append: ' '
+        | append: block.settings.padding-type-left-right
+        | append: block.settings.padding-left-right
+    -%}
+    {%- include 'template__text'
+      bg: block.settings.bg,
+      title: block.settings.title,
+      subtitle: block.settings.subtitle,
+      content: block.settings.html,
+      color: block.settings.color,
+      max_width: block.settings.message_width,
+      text_align: block.settings.text_align,
+      padding: padding
+    -%}
+{%- endcase -%}
+

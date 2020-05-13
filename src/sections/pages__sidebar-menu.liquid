@@ -1,0 +1,23 @@
+{% assign sidemenu = linklists[section.settings.sidemenu] %}
+<div class="sidebar-menu">
+  <ul class="submenu">
+    {% for link2 in sidemenu.links %}
+      <li class="level1 {% if link2.active %}active{%endif%}">
+        <a href="{{link2.url}}">{{link2.title}}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Sidebar Menu",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "sidemenu",
+      "label": "Side bar menu"
+    }
+  ]
+}
+{% endschema %}

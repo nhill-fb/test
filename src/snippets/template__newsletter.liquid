@@ -1,0 +1,40 @@
+<section class="newsletter__section">
+  <div class="newsletter__section-container">
+    {%- if message != blank -%}
+    <div class="newsletter__section-message">
+      {{ message }}
+    </div>
+    {%- endif -%}
+    <div class="newsletter__section-form-container">
+      {% if title != blank %}
+      <div class="newsletter__label">
+          <label for="Email">{{ title | escape }}</label>
+      </div>
+      {% endif %}
+      {% form 'customer' %}
+        {% if form.posted_successfully? %}
+          <p class="form--success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+        {% else %}
+          <div class="input-group">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email"
+              name="contact[email]"
+              id="Email"
+              class="newsletter__input form-control"
+              value="{% if customer %}{{ customer.email }}{% endif %}"
+              placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+              autocorrect="off"
+              autocapitalize="off">
+            <span class="input-group__btn">
+              <button type="submit" class="btn newsletter__submit" name="commit" id="Subscribe">
+                <span>{{ 'general.newsletter_form.submit' | t }}</span>
+                {%- include 'icon-email' -%}
+              </button>
+            </span>
+          </div>
+          {{ form.errors | default_errors }}
+        {% endif %}
+      {% endform %}
+    </div>
+  </div>
+</section>

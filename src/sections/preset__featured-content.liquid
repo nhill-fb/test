@@ -1,0 +1,118 @@
+{%- if section.settings.enabled -%}
+<section class="featured__content" style="background-color:{{section.settings.bg}}">
+  <div class="featured__content-container">
+    <div class="featured__content-heading">
+      <h2 class="featured__content-title">{{section.settings.title}}</h2>
+      {%- if section.settings.desc != blank -%}
+      {{section.settings.desc}}
+      {%- endif -%}
+      {%- if section.settings.link-text != blank -%}
+      <a class="featured__content-link" href="{{section.settings.url}}">{{section.settings.link-text}}</a>
+      {%- endif -%}
+    </div>
+    <div class="featured__content-grid">
+      {% assign size = section.blocks | size %}
+      {% assign col = 'col-6' %}
+      {% case size %}
+        {% when 3 %}
+          {% assign col = 'col-md-4' %}
+        {% when 4 %}
+          {% assign col = 'col-md-3' %}
+      {% endcase %}
+      {% for block in section.blocks %}
+        <div class="featured__content-block {{col}}">
+          <a href="{{block.settings.url}}">
+            {% include 'responsive-img' src: block.settings.image %}
+            <h3>{{block.settings.title}}</h3>
+            {%- if block.settings.link_text-%}
+            <span class="btn">{{block.settings.link_text}}</span>
+            {%- endif -%}
+            {{block.settings.desc}}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Featured Content",
+  "settings": [
+    {
+      "id": "enabled",
+      "type": "checkbox",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "id": "bg",
+      "type": "color",
+      "label": "Background",
+      "default": "#fff9f2"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Featured In"
+    },
+    {
+      "id": "desc",
+      "type": "richtext",
+      "label": "Description"
+    },
+    {
+      "id": "url",
+      "type": "url",
+      "label": "Link"
+    },
+    {
+      "id": "link-text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "View All"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "featured-content",
+      "name": "Content",
+      "limit": 4,
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "url",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link Text"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "desc",
+          "type": "richtext",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Contents",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

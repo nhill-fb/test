@@ -1,0 +1,197 @@
+<div class="block-details">
+
+	{% for product in collections.natural-deodorant.products %}
+
+		<div class="block-details__panel is-hidden" data-product-id="{{product.id}}">
+			<div class="block-details__header">
+				<div class="block-details__header__col">
+					<h1>{{ product.title }}</h1>
+					<h2>{{ product.description }}</h2>
+				</div>
+				<div class="block-details__header__col">
+					<a href="#" class="btn primary on-light-bg btn__purchase"><span class="btn__purchase__label">Add To Cart </span><span class="btn__purchase__price">Add <br/> for $22</span></a>
+				</div>
+			</div>
+			<div class="block-details__cols">
+				<div class="block-details__col">
+					{% if product.tags contains 'holiday' %}
+					<h1>
+						THE MINIS BOX SET
+						<a href="#" class="block-details__toggle block-details__toggle--first open">
+							<span class="more">{% include 'icon-qty-more' %}</span>
+							<span class="less">{% include 'icon-qty-less' %}</span>
+						</a>
+					</h1>
+					<div class="block-details__col__content block-details__col__content--first">
+						{{ product.metafields.accentuate.the_minis_box_set }}
+					</div>
+					{% else %}
+					<h1>
+						Scent Level
+						<a href="#" class="block-details__toggle block-details__toggle--first open">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+
+					<div class="block-details__col__content block-details__col__content--first">
+						{% assign scent_levels = product.metafields.accentuate.scent_level | split: ','  %}
+						{% assign scent_level_values = product.metafields.accentuate.scent_level_values | split: ','  %}
+						{% assign count = 0 %}
+
+						{% for scent_level in scent_levels %}
+
+							{% assign scent_level_value = scent_level_values[count] %}
+							{% assign scent_level_value = scent_level_value | abs %}
+
+							<div class="block-details__scent">
+								<div class="block-details__scent__label">{{ scent_level }}</div>
+								<ul class="block-details__scent__values">
+									{% for i in (1..4) %}
+										{% if i == scent_level_value %}
+											<li class="active">{{ i }}</li>
+										{% else %}
+											<li>{{ i }}</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+
+							{% assign count = count | plus: 1 %}
+						{% endfor %}
+					</div>
+					{% endif %}
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Ingredients
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						{{ product.metafields.accentuate.ingredients }}
+					</div>
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Usage And Caution
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						{{ product.metafields.accentuate.usage }}
+					</div>
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Benefits
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						<ul class="block-details__ingredients">
+							{% assign benefits = product.metafields.accentuate.benefits | split: ','  %}
+							{% for benefit in benefits %}
+								<li>{{ benefit }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+
+
+	{% for product in collections.mini-trios.products %}
+
+	<div class="block-details__panel is-hidden" data-product-id="{{product.id}}">
+			<div class="block-details__header">
+				<div class="block-details__header__col">
+					<h1>{{ product.title }}</h1>
+					<h2>{{ product.description }}</h2>
+				</div>
+				<div class="block-details__header__col">
+					<a href="#" class="btn primary on-light-bg btn__trios">
+						{% for product in collections.mini-trios.products %}
+						<span class="btn__trios__desktop">Select 3 For ${{ product.price | money_without_currency | remove: '.00' }}</span>
+						{% endfor %}
+						<span class="btn__trios__mobile">Select<br/>3</span>
+					</a>
+				</div>
+			</div>
+			<div class="block-details__cols">
+				<div class="block-details__col">
+					<h1>
+						Choose Three
+						<a href="#" class="block-details__toggle  block-details__toggle--first">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+
+					<div class="block-details__col__content block-details__col__content--first">
+						<p>
+							{{ product.metafields.accentuate.three_notes }}
+						</p>
+					</div>
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Ingredients
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						<p>
+							*Propylene Glycol (BIOBASED), Water (Aqua), *Sodium Stearate, *Propanediol, Diatomaceous Earth, *Saccharomyces Ferment Filtrate (ORGANIC), *Glycerin, **Fragrance (Parfum-Natural),*Caprylyl/Capryl Glucoside, *Tapioca Starch, Silica, *Polyglyceryl-5 Oleate, *Sorbitan Oleate Decylglucoside Crosspolymer, *Polyglyceryl-4 Laurate/Succinate, *Sodium Cocoyl Glutamate, *Glyceryl Caprylate, *Citric Acid 
+						</p>
+						<p>
+							* Plant based ingredient. ** Natural fragrances are essential oils and isolates, and not a result of synthetic chemistry.
+						</p>
+					</div>
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Usage And Caution
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						<p>
+							{{ product.metafields.accentuate.usage }}
+						</p>
+					</div>
+				</div>
+				<div class="block-details__col">
+					<h1>
+						Benefits
+						<a href="#" class="block-details__toggle">
+		                  <span class="more">{% include 'icon-qty-more' %}</span>
+		                  <span class="less">{% include 'icon-qty-less' %}</span>
+		                </a>
+					</h1>
+					<div class="block-details__col__content">
+						<ul class="block-details__ingredients">
+							{% assign triobenefits = product.metafields.accentuate.benefits | split: ','  %}
+							{% for benefit in triobenefits %}
+								<li>{{ benefit }}</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	{% endfor %}
+</div>

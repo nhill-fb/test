@@ -1,0 +1,28 @@
+<section class="section__video-banner">
+  <div class="section__video-container">
+    {%- if mp4_url -%}
+      <video {%if controls%}controls{%endif%} {%if autoplay%}autoplay muted{%endif%} {%if loop%}loop{%endif%}>
+        <source src="{{mp4_url}}" type="video/mp4">
+      </video>
+    {%-else-%}
+      <div style="padding:56.25% 0 0 0;position:relative;">
+        {%- assign src = source -%}
+        {%- if src == blank -%}
+          {%- if settings.video.type == "vimeo" -%}
+            {%- capture src -%}https://player.vimeo.com/video/{{settings.video.id}}?title=0&byline=0&portrait=0{%- endcapture -%}
+          {%- else -%}
+            {%- capture src -%}https://www.youtube.com/embed/{{settings.video.id}}{%- endcapture-%}
+          {%- endif -%}
+        {%- endif -%}
+        <iframe 
+          src="{{src}}" 
+          style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+          frameborder="0" 
+          webkitallowfullscreen 
+          mozallowfullscreen 
+          allowfullscreen
+        ></iframe>
+      </div>
+    {%- endif -%}
+  </div>
+</section>

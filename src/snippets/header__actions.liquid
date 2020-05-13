@@ -1,0 +1,54 @@
+{%- assign included = menu | default: 'hamburger,search,account,minicart' -%}
+<div class="header__actions">   
+  <ul class="header__actions-list">
+    {%- if section.settings.inline_search and included contains 'search'-%}
+    <li class="inline-search-list">
+      {%- include 'header__search' -%}
+    </li>
+    {%- endif -%}
+    {%-if section.settings.inline_search == false and included contains 'search'-%}
+    <li class="search-list vue-app">
+      <a href="#" v-toggle="{target: 'body', class: 'header__search--is-active', focus: '.header__search-form input'}" class="header__search-link">
+        <label>{{ 'layout.search' | t }}</label>
+        {% include 'icon-search' %}
+      </a>
+    </li>   
+    {%- endif -%}   
+    {%- if included contains 'account' -%}
+    <li class="account-list">
+      <a href="/account" class="header__account-link">
+        <label>{%if customer%}{{ 'layout.customer.account' | t }}{%else%}{{ 'layout.customer.log_in' | t }}{%endif%}</label>
+        {% include 'icon-user' %}
+      </a>
+    </li>
+    {%- endif -%}
+    {%- if included contains 'minicart' -%}
+    <li class="minicart-list vue-cart">
+      <a href="/cart" v-if="cart" @click.prevent="openCartDrawer" class="header__minicart-link">
+        <label>{{ 'cart.general.cart' | t }}</label>
+        {% include 'icon-bag' %}
+        <span v-text="cart.item_count">{{cart.item_count }}</span>
+      </a>
+      {%- if settings.minicart_use_dropdown -%}
+        <minicart></minicart>
+      {%- endif -%}
+    </li>
+    {%- endif -%}
+    {%- if included contains 'hamburger' -%}
+    <li class="header__hamburger vue-app">
+      <button 
+        class="hamburger hamburger--spin" 
+        type="button"
+        @click="openNavDrawer">
+        <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+    </li>
+    {%- endif -%}
+    {%- if additional_links != blank -%}
+    {{additional_links}}
+    {%- endif -%}
+  </ul>
+ 
+</div>

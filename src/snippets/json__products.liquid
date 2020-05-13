@@ -1,0 +1,76 @@
+{%- capture collectionJson -%}
+[
+  {%- assign collection_handles = '' -%}
+  {%- assign id_list = '' -%}
+
+  {%- if list != blank -%}
+    {%- assign counter = 0 -%}
+    {%- for prod in list -%}
+      {%- if prod.object_type == 'product' -%}
+        {%- assign id_list = id_list | append: prod.id | append: ',' -%}
+        {%- assign group_by = '' -%}
+        {%- for ptag in prod.tags -%}
+          {%- if ptag contains '@' -%}
+            {%- assign group_by = ptag | remove_first: '@' | handle -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- assign collection_handles = collection_handles | append: group_by | append: ',' -%}
+        
+        {%- if compare_product != blank -%} 
+          {%-comment-%}This compare product is used for related products, so it doesn't include itself{%-endcomment-%}
+          
+          {%- unless product.handle == compare_product.handle -%}
+            {%- unless same_vendor and compare_product.vendor != product.vendor -%}
+              {%- unless same_type and compare_product.type != product.type -%}
+                {%- include 'json__product' model: product, not_nested: true -%}{%- unless forloop.last -%},{%- endunless -%}
+              
+                {%- assign counter = counter | plus: 1 -%}
+                {%- if counter == break_at -%}
+                  {%- break -%}
+                {%- endif -%}
+
+              {%- endunless -%}
+            {%- endunless -%}
+          {%- endunless -%}
+
+        {%- else -%}
+          {%- include 'json__product' model: prod -%}{%- unless forloop.last -%},{%- endunless -%}
+        {%- endif -%}
+
+      {%- endif -%}
+    {%- endfor -%}
+
+  {%- else -%}
+    {%- include 'json__product' model: product, primary: true -%}
+    {%- assign id_list = id_list | append: product.id -%}
+    {%- assign group_by = '' -%}
+    {%- for ptag in product.tags -%} 
+      {%- if ptag contains '@' -%}
+        {%- assign group_by = ptag | remove_first: '@' | handle -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- assign collection_handles = collection_handles | append: group_by -%}
+  {%- endif -%}
+  
+  {%- assign collection_handles = collection_handles | split: ',' | uniq -%}
+  {%- for col_handle in collection_handles -%}
+    {%- for prod in collections[col_handle].products -%}
+      {%- if id_list contains prod.id -%}
+        {%- continue -%} {%- comment -%} Exclude products in group if it already exists in collection {%- endcomment -%}
+      {%- endif -%}
+      ,{%- include 'json__product' model: prod -%}
+    {%- endfor -%}
+    {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+]
+{%- endcapture -%}
+<script>
+  window.VuexState = window.VuexState || {};
+  {%- if compare_product != blank -%}
+  window.VuexState.related_products = (window.VuexState.related_products || []).concat({{collectionJson}});
+  {%- else -%}
+  window.VuexState.products = (window.VuexState.products || []).concat({{collectionJson}});
+  {%- endif -%}
+</script>

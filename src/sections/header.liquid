@@ -1,0 +1,286 @@
+<section class="section__header">
+  {%- if section.settings.announce_content != blank -%}
+  {%- include 'header__announce'
+    id: 'top-announce' 
+    enable_slide: section.settings.announce_enable_slide,
+    slide_effect: section.settings.announce_slide_effect,
+    speed: section.settings.announce_speed,
+    content: section.settings.announce_content,
+    bg: section.settings.announce_bg,
+    color: section.settings.announce_color -%}
+  {%- endif -%}
+
+  <header role="banner" class="header{% if section.settings.menu_pos %} menu--is-bottom{%-endif-%}">
+    <div class="header__container">
+      {%-if section.settings.menu_pos-%}
+        <div class="header__top">
+          {%- include 'header__logo' -%}
+          {%- include 'header__actions' -%}
+        </div>
+        {%- include 'header__nav' menu: section.settings.main_linklist, blocks: section.blocks -%}
+      {%- else -%}
+        {%- include 'header__logo' -%}
+        {%- include 'header__nav' menu: section.settings.main_linklist, blocks: section.blocks -%}
+        {%- include 'header__actions' -%}
+      {%- endif -%}
+    </div>
+  </header>
+  {%- if section.settings.announce_content2 != blank -%}
+  {%- include 'header__announce' 
+    id: 'bottom-announce' 
+    enable_slide: section.settings.announce_enable_slide2,
+    slide_effect: section.settings.announce_slide_effect2,
+    speed: section.settings.announce_speed2,
+    content: section.settings.announce_content2,
+    bg: section.settings.announce_bg2,
+    color: section.settings.announce_color2 -%}
+  {%- endif -%}
+
+  {%- include 'header__search' popup: true -%}
+</section>
+{% include 'header__mobile-nav' %}
+<style>
+.header__logo{width: {{section.settings.logo_mobile_width}}px}
+#top-announce{background-color:{{section.settings.announce_bg}};color:{{section.settings.announce_color}}}
+#top-announce a{color:{{section.settings.announce_color}}}
+#bottom-announce{background-color:{{section.settings.announce_bg2}};color:{{section.settings.announce_color2}}}
+#bottom-announce a{color:{{section.settings.announce_color2}}}
+@media (min-width: 768px) {.header__logo{width: {{section.settings.logo_desktop_width}}px}}
+</style>
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Top Announcement Bar"
+      },
+      {
+        "type": "richtext",
+        "id": "announce_content",
+        "label": "Message",
+        "info": "Use this section for promotions, each new line is a new slide"
+      },
+      {
+        "type": "checkbox",
+        "id": "announce_enable_slide",
+        "label": "Enable multiple messages",
+        "default": false,
+        "info": "When enabled, messages will slide up/down"
+      },
+      {
+        "type": "color",
+        "id": "announce_bg",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "announce_color",
+        "label": "Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "id": "announce_slide_effect",
+        "label": "Slide Animation",
+        "options": [
+          {
+            "label": "Slide Up/Down",
+            "value": "slide"
+          },
+          {
+            "label": "Slide Left/Right",
+            "value": "slide-left"
+          },
+          {
+            "label": "Fade In/Out",
+            "value": "fade"
+          }
+        ],
+        "default": "slide"
+      },
+      {
+        "type": "range",
+        "id": "announce_speed",
+        "label": "Slide Speed",
+        "min": 500,
+        "max": 9500,
+        "step": 500,
+        "default": 3000
+      },
+      {
+        "type": "header",
+        "content": "Bottom Announcement Bar"
+      },
+      {
+        "type": "richtext",
+        "id": "announce_content2",
+        "label": "Message",
+        "info": "Use this section for promotions, each new line is a new slide.  Leave blank to remove promo"
+      },
+      {
+        "type": "checkbox",
+        "id": "announce_enable_slide2",
+        "label": "Enable multiple messages",
+        "default": false,
+        "info": "When enabled, messages will slide up/down"
+      },
+      {
+        "type": "color",
+        "id": "announce_bg2",
+        "label": "Background",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "announce_color2",
+        "label": "Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "select",
+        "id": "announce_slide_effect2",
+        "label": "Slide Animation",
+        "options": [
+          {
+            "label": "Slide Up/Down",
+            "value": "slide"
+          },
+          {
+            "label": "Slide Left/Right",
+            "value": "slide-left"
+          },
+          {
+            "label": "Fade In/Out",
+            "value": "fade"
+          }
+        ],
+        "default": "slide"
+      },
+      {
+        "type": "range",
+        "id": "announce_speed2",
+        "label": "Slide Speed",
+        "min": 500,
+        "max": 9500,
+        "step": 500,
+        "default": 3000
+      },
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo Desktop"
+      },
+      {
+        "type": "range",
+        "id": "logo_desktop_width",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 200,
+        "label": "Logo width",
+        "unit": "px"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo_mobile",
+        "label": "Logo Mobile"
+      },
+      {
+        "type": "range",
+        "id": "logo_mobile_width",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 200,
+        "label": "Logo width",
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "menu_pos",
+        "label": "Menu Position",
+        "info": "Enable to display menu below logo"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_main_linklist",
+        "label": "Menu - Mobile",
+        "default": "main-menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "inline_search",
+        "label": "Enable Inline Search",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "name": "Additional Menu Item",
+        "type": "menu-item",
+        "settings": [
+          {
+            "id": "associated-menu-title",
+            "type": "text",
+            "label": "Parent menu item text",
+            "info": "Select the parent menu item to include this snippet, ex: New Arrivals"
+          },
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "link",
+            "type": "url",
+            "label": "Link"
+          },
+          {
+            "id": "link-text",
+            "type": "text",
+            "label": "Link Text"
+          },
+          {
+            "id": "max-width",
+            "type": "range",
+            "label": "Max Width",
+            "min": 50,
+            "max": 1000,
+            "unit": "px",
+            "step": 10,
+            "default": 340
+          },
+          {
+            "id": "position",
+            "type": "range",
+            "label": "Position",
+            "min": -10,
+            "max": 10,
+            "default": 0
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

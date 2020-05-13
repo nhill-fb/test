@@ -1,0 +1,120 @@
+<div class="block-carousel">
+	<div class="block-carousel__header">
+		<div class="block-carousel__header__col">
+			<div class="swiper-container block-carousel__headerswiper">
+			    <div class="swiper-wrapper">
+						{% for product in collections.natural-deodorant.products %}
+
+							<div class="swiper-slide" data-available="{{ product.available }}" data-product-id="{{ product.id }}" >
+								<a href="#" class="btn__scentmenu">{{ product.title }}</a>
+								<h2>{{ product.description }}</h2>
+							</div>
+
+						{% endfor %}
+					
+						{% for product in collections.mini-trios.products %}
+		
+							<div class="swiper-slide" data-available="{{ product.available }}" data-product-id="{{ product.id }}" >
+								<a href="#" class="btn__scentmenu">{{ product.title }}</a>
+								<h2>{{ product.description }}</h2>
+							</div>
+
+						{% endfor %}
+					</div>
+			</div>
+		</div>
+		<div class="block-carousel__header__col">
+			<a href="#" class="btn primary on-light-bg btn__purchase">
+				<span class="btn__purchase__label">Add To Cart </span>
+				<span class="btn__purchase__price"></span>
+			</a>
+			{% if settings.disable_all_minis %}
+			<a href="#" class="btn primary on-light-bg btn__trios inactive">
+				<span class="btn__trios__desktop">Out Of Stock</span>
+				<span class="btn__trios__mobile">Out Of</br>Stock</span>
+			</a>
+			{% else %}
+			<a href="#" class="btn primary on-light-bg btn__trios">
+				{% for product in collections.mini-trios.products %}
+				<span class="btn__trios__desktop">Select 3 For ${{ product.price | money_without_currency | remove: '.00' }}</span>
+				{% endfor %}
+				<span class="btn__trios__mobile">Select<br/>3</span>
+			</a>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="swiper-container block-carousel__mainswiper">
+	    <div class="swiper-wrapper">
+	    	{% for product in collections.natural-deodorant.products %}
+				
+				{% assign classes = 'swiper-slide block-carousel__product ' %}
+				{% if product.metafields.accentuate.carousel_image_mobile %}
+					{% assign classes = classes | append 'responsive' %}
+				{% endif %}
+
+				<div class="{{ classes }}" 
+				data-available="{{ product.available }}"
+				data-product-id="{{ product.id }}" 
+				data-variant-id="{{ product.variants.first.id }}" 
+				data-price="{{ product.price | money_without_currency }}" 
+				data-title="{{ product.title }}" 
+				data-handle="{{ product.handle }}">
+					<img alt="{{ product.title }}" 
+						src="{{ product.metafields.accentuate.carousel_image }}" 
+						width="835" 
+						class="block-carousel__product__image desktop stick" />
+
+					{% if product.metafields.accentuate.carousel_image_mobile %}
+					<img alt="{{ product.title }}" 
+						src="{{ product.metafields.accentuate.carousel_image_mobile }}" 
+						width="835" 
+						class="block-carousel__product__image mobile stick" />
+					{% endif %}
+			  </div>
+
+			{% endfor %}
+
+			{% for product in collections.mini-trios.products %}
+				
+				{% assign classes = 'swiper-slide block-carousel__product ' %}
+				{% if product.metafields.accentuate.carousel_image_mobile %}
+					{% assign classes = 'swiper-slide block-carousel__product responsive' %}
+				{% endif %}
+
+				<div class="{{ classes }}" 
+				data-available="{{ product.available }}"
+				data-product-id="{{ product.id }}" 
+				data-variant-id="{{ product.variants.first.id }}" 
+				data-price="{{ product.price | money_without_currency }}" 
+				data-title="{{ product.title }}" 
+				data-handle="{{ product.handle }}">
+						<img alt="{{ product.title }}" 
+							src="{{ product.metafields.accentuate.carousel_image }}" 
+							width="835" 
+							class="block-carousel__product__image desktop trio" />
+
+						{% if product.metafields.accentuate.carousel_image_mobile %}
+						<img alt="{{ product.title }}" 
+							src="{{ product.metafields.accentuate.carousel_image_mobile }}" 
+							width="835" 
+							class="block-carousel__product__image mobile trio" />
+						{% endif %}
+					</div>
+
+			{% endfor %}
+	    </div>
+
+	    <a href="#" class="swiper-button-prev"></a href="#">
+	    <a href="#" class="swiper-button-next"></a href="#">
+			<div class="block-carousel__mainswiper__pagination"></div>
+			<img src="{{ "icon-arrow-down.svg" | asset_url }}" class="block-carousel__arrow" alt="Scroll Down" />
+	</div>
+
+
+	{% if settings.promo_bar != '' %}
+		<div class="block-carousel__promo">
+			{{ settings.promo_bar }}
+		</div>
+	{% endif %}
+</div>
