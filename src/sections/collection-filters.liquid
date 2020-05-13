@@ -1,0 +1,22 @@
+<section class="filter vue-filter">
+  <div class="filter__toggle-container">
+    <a href="#filter-container" @click.prevent="open = !open" role="button" :aria-expanded="open ? 'true':'false'" aria-controls="filter-container" class="filter__toggle">
+      <span>Filter <span>&#9658;</span></span>
+    </a>
+    <div id="filter-container" class="filter__container" :class="{'is-open': open}" :aria-hidden="!open">
+      <div class="filter__options">
+        <div id="bc-sf-filter-tree-h"></div>
+      </div>
+      <div id="bc-sf-filter-tree"></div>
+      <div class="filter__action-bar">
+        <button class="btn btn-default reset" @click="reset">Reset</button>
+        <button class="btn btn-default close" @click="open = false">Close</button>
+      </div>
+    </div>
+  </div>
+  <div class="filter__sort-container">
+    <span id="bc-sf-filter-total-product"></span>
+    <div class="bc-sf-filter-toolbar-item" id="bc-sf-filter-top-sorting"></div>
+  </div>
+</section>
+

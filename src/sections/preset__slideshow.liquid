@@ -1,0 +1,282 @@
+{%- assign id = 'slide_' | append: section.id -%}
+{%- capture slide_attr -%}
+  {%unless section.settings.navigation%}:navigation='false'{%endunless%} {%if section.settings.pagination%}:pagination='{}'{%endif%} :options='{ loop: {{section.settings.loop}}, "effect": "{{section.settings.effect}}", "autoplay": {%if section.settings.autoplay %}{ "delay": {{section.settings.speed}} }{%else%}false{%endif%} }'
+{%- endcapture -%}
+{%- capture slides -%}
+  {%- for block in section.blocks -%}
+    <div class="slide swiper-slide">
+      {%- include 'content__builder' lazyload: false -%}
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+{% include 'template__slideshow' 
+  id: id
+  title: section.settings.title,
+  slide_attr: slide_attr,
+  slides: slides %}
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "navigation",
+      "type": "checkbox",
+      "label": "Enable Navigation",
+      "default": true
+    },
+    {
+      "id": "pagination",
+      "type": "checkbox", 
+      "label": "Enable Pagination",
+      "default": true
+    },
+    {
+      "id": "loop",
+      "type": "checkbox",
+      "label": "Infinite Loop",
+      "default": true
+    },
+    {
+      "id": "autoplay",
+      "type": "checkbox",
+      "label": "Autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Autoplay Speed",
+      "min": 500,
+      "max": 9500,
+      "step": 500,
+      "default": 3000
+    },
+    {
+      "type": "select",
+      "id": "effect",
+      "label": "Slide Animation",
+      "default": "slide",
+      "options": [        
+        { "label": "Slide", "value": "slide" },
+        { "label": "Fade", "value": "fade" },
+        { "label": "Cube", "value": "cube" },
+        { "label": "Coverflow", "value": "coverflow" },
+        { "label": "Flip", "value": "flip" } 
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image Slide",
+      "type": "text-image",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Container"
+        },
+        {
+          "id": "bg",
+          "type": "color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image_mobile",
+          "type": "image_picker",
+          "label": "Image - Mobile"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "id": "text_layout",
+          "type": "select",
+          "label": "Text Layout",
+          "default": "top",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "On Top",
+              "value": "top"
+            }, 
+            {
+              "label": "Below",
+              "value": "below"
+            }, 
+            {
+              "label": "Above",
+              "value": "above"
+            }
+          ]
+        },
+        {
+          "id": "text_pos",
+          "type": "select",
+          "label": "Text Position",
+          "default": "align-items-md-center justify-content-md-center",
+          "options": [
+            {"label": "Top Left", "value": "align-items-md-start justify-content-md-start"},
+            {"label": "Top Center", "value": "align-items-md-start justify-content-md-center"},
+            {"label": "Top Right", "value": "align-items-md-start justify-content-md-end"},
+            {"label": "Center Left", "value": "align-items-md-center justify-content-md-start"},
+            {"label": "Center Center", "value": "align-items-md-center justify-content-md-center"},
+            {"label": "Center Right", "value": "align-items-md-center justify-content-md-end"},
+            {"label": "Bottom Left", "value": "align-items-md-end justify-content-md-start"},
+            {"label": "Bottom Center", "value": "align-items-md-end justify-content-md-center"},
+            {"label": "Bottom Right", "value": "align-items-md-end justify-content-md-end"}
+          ]
+        },
+        {
+          "id": "text_pos_mobile",
+          "type": "select",
+          "label": "Text Position - Mobile",
+          "default": "align-items-center justify-content-center",
+          "options": [
+            {"label": "Top Left", "value": "align-items-start justify-content-start"},
+            {"label": "Top Center", "value": "align-items-start justify-content-center"},
+            {"label": "Top Right", "value": "align-items-start justify-content-end"},
+            {"label": "Center Left", "value": "align-items-center justify-content-start"},
+            {"label": "Center Center", "value": "align-items-center justify-content-center"},
+            {"label": "Center Right", "value": "align-items-center justify-content-end"},
+            {"label": "Bottom Left", "value": "align-items-end justify-content-start"},
+            {"label": "Bottom Center", "value": "align-items-end justify-content-center"},
+            {"label": "Bottom Right", "value": "align-items-end justify-content-end"}
+          ]
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Sub heading"
+        },
+        {
+          "id": "message",
+          "type": "richtext",
+          "label": "Message"
+        },
+        {
+          "id": "color",
+          "type": "color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "id": "message_width",
+          "type": "range",
+          "label": "Message Width",
+          "min": 10,
+          "max": 1000,
+          "unit": "px",
+          "step": 10,
+          "default": 1000
+        },
+        {
+          "id": "text_align",
+          "type": "select",
+          "label": "Text Align",
+          "default": "text-left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "text-left"
+            },
+            {
+              "label": "Center",
+              "value": "text-center"
+            },
+            {
+              "label": "Right",
+              "value": "text-right"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "id": "btn_color",
+          "type": "color",
+          "label": "Button Color"
+        },
+        {
+          "id": "btn_bg",
+          "type": "color",
+          "label": "Button Background"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        },
+        {
+          "id": "link_type",
+          "type": "select",
+          "label": "Link Type",
+          "options": [
+            {
+              "value": "btn btn-primary",
+              "label": "Primary Button"
+            },
+            {
+              "value": "btn btn-outline-primary",
+              "label": "Outline Primary Button"
+            },
+            {
+              "value": "btn-link",
+              "label": "Anchor"
+            },
+            {
+              "value": "container",
+              "label": "Whole banner is clickable"
+            },
+            {
+              "value": "",
+              "label": "No Link"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema%}

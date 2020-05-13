@@ -1,0 +1,296 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Sencha Kyoto",
+    "theme_version": "0.0.1",
+    "theme_author": "Quan Tran",
+    "theme_documentation_url": "https://shopify.github.io/slate/",
+    "theme_support_url": "https://github.com/Shopify/slate"
+  },    
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon", 
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Body Font"
+      },
+      {
+        "id": "body_font_enable",
+        "type": "checkbox",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "id": "body_font_family",
+        "type": "font_picker",
+        "label": "Font",
+        "default": "avenir_next_n4"
+      },
+      {
+        "type": "header",
+        "content": "Heading Font"
+      },
+      {
+        "id": "heading_font_enable",
+        "type": "checkbox",
+        "label": "Enable",
+        "default": true
+      },
+      {
+        "id": "heading_font_family",
+        "type": "font_picker",
+        "label": "Font",
+        "default": "avenir_next_n4"
+      }
+    ]
+  },
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "id": "product_groupby_type",
+        "type": "select",
+        "label": "Group By",
+        "options": [
+          { "label": "Disable", "value": "" },
+          { "label": "Product Type", "value": "type" }, 
+          { "label": "Product Tag", "value": "tag" }
+        ],
+        "info": "Select how products are grouped together"
+      },
+      {
+        "id": "product_groupby_prefix",
+        "type": "text",
+        "label": "Group by prefix",
+        "default": "style:",
+        "info": "Tag prefix to group products by"
+      }
+    ]
+  },
+  {
+    "name": "Collection",
+    "settings": [
+      {
+        "id": "collection_enabled-img-hover",
+        "type": "checkbox",
+        "label": "Enable alt image on hover"
+      },
+      {
+        "id": "collection_use_filters",
+        "type": "checkbox",
+        "label": "Use Filters",
+        "info": "Must install Boost Commerce Filter & Search app",
+        "default": false
+      },
+      {
+        "id": "collection_display_breadcrumb",
+        "type": "checkbox",
+        "label": "Display Breadcrumbs",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Minicart",
+    "settings": [
+      {
+        "id": "minicart_goto-checkout",
+        "type": "checkbox",
+        "label": "Go to Checkout",
+        "default": true
+      },
+      {
+        "id": "display_ship_msg",
+        "type": "checkbox",
+        "label": "Show shipping calculation message",
+        "info": "Show shipping, taxes, and discounts calculated at checkout",
+        "default": true
+      },
+      {
+        "id": "display_savings",
+        "type": "checkbox",
+        "label": "Show savings",
+        "info": "Show amount saved between compared at price and purchase price",
+        "default": false
+      },
+      {
+        "id": "minicart_use_dropdown",
+        "type": "checkbox",
+        "label": "Display as dropdown",
+        "info": "Enable to display minicart as dropdown instead of drawer",
+        "default": false
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social sharing options"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_sharing_blog",
+        "label": "Enable sharing for blog articles",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Share on Facebook",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Tweet on Twitter",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Pin on Pinterest",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Sharing links"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter link"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook link"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest link"
+      },
+      {
+        "type": "text", 
+        "id": "social_instagram_link",
+        "label": "Instagram link"
+      }
+    ]
+  },
+  {
+    "name": "Mini Trios",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "disable_all_minis",
+        "label": "Disable All Mini Trios",
+        "default": false,
+        "info": "Set true to force out-of-stock messaging for all mini trios across site"
+      },
+      {
+        "type": "text",
+        "id": "hidden_products",
+        "label": "Hidden Product Handles",
+        "info": "Comma separated list of product handles to hide."
+      }
+    ]
+  },
+  {
+    "name": "Intro",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "intro_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "intro_cta",
+        "label": "CTA Label"
+      },
+      {
+        "type": "image_picker",
+        "id": "desktop_bg",
+        "label": "Desktop Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "tablet_bg",
+        "label": "Tablet Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_bg",
+        "label": "Mobile Background Image"
+      },
+      {
+        "type": "checkbox",
+        "id": "intro_newsletter",
+        "label": "Include Newsletter",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "intro_prelaunch",
+        "label": "Prelaunch?",
+        "default": false,
+        "info": "Set true if only allowing newsletter signups at this time"
+      },
+      {
+        "type": "checkbox",
+        "id": "intro_soldout",
+        "label": "Sold Out of Everything?",
+        "default": false,
+        "info": "Set true only to show post-launch UI with newsletter signup"
+      },
+      {
+        "type": "text",
+        "id": "intro_version",
+        "label": "Version",
+        "default": "1",
+        "info": "Increase the version number to clear intro cookie"
+      },
+      {
+        "type": "checkbox",
+        "id": "intro_ignorecookie",
+        "label": "Ignore Cookie",
+        "default": false,
+        "info": "Set true to force intro"
+      }
+    ]
+  },
+  {
+    "name": "Promo Bar",
+    "settings": [
+      {
+        "type": "html",
+        "id": "promo_bar",
+        "label": "Text",
+        "info": "Accepts basic HTML tags"
+      }
+    ]
+  },
+  {
+    "name": "Vegan Statement",
+    "settings": [
+      {
+        "type": "html",
+        "id": "vegan_statement",
+        "label": "Body (HTML)"
+      }
+    ]
+  }
+]

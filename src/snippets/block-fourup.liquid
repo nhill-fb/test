@@ -1,0 +1,37 @@
+<div class="block-fourup">
+	{% for product in collections.natural-deodorant.products %}
+		<div class="block-fourup__panel" data-product-id="{{product.id}}">
+			<div class="block-fourup__panel__content">
+
+				{% assign i = 1 %}
+				{% assign images = product.metafields.media_gallery %}
+				{% assign sizes = product.metafields.accentuate.media_image_sizes | split: ',' %}
+				{% for size in sizes %}
+					{% assign key = 'media_image_' | append: i %}
+
+					<img class="img-size-{{ size }}" alt="Lifestyle Image" data-src="{{ product.metafields.media_gallery[key] }}" />
+
+					{% assign i = i | plus: 1 %}
+				{% endfor %}
+
+			</div>
+		</div>
+	{% endfor %}
+
+	{% for product in collections.mini-trios.products %}
+		<div class="block-fourup__panel" data-product-id="{{product.id}}">
+			<div class="block-fourup__panel__content">
+				{% assign i = 1 %}
+				{% assign images = product.metafields.media_gallery %}
+				{% assign sizes = product.metafields.accentuate.media_image_sizes | split: ',' %}
+				{% for size in sizes %}
+					{% assign key = 'media_image_' | append: i %}
+
+					<img class="img-size-{{ size }}" alt="Lifestyle Image" data-src="{{ product.metafields.media_gallery[key] }}" />
+
+					{% assign i = i | plus: 1 %}
+				{% endfor %}
+			</div>
+		</div>
+	{% endfor %}
+</div>

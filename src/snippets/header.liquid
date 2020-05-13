@@ -1,0 +1,64 @@
+<div class="header-bg"></div>
+
+<div class="header__to__cart">
+    <div class="cta">
+      <a href="/checkout">Proceed to checkout <span class="count__to__cart">0</span> <span class="item__to__cart">Items</span>: <span class="total__to__cart"></span></a>
+    </div>
+</div> 
+
+
+<div class="header">
+
+  <a href="/" class="header__logo">
+    <img src="{{ "logo.svg" | asset_url }}" class="header__logo__default" alt="Corpus Logo" />
+    <img src="{{ "logo-white.svg" | asset_url }}" class="header__logo__white" alt="Corpus Logo" />
+    <img src="{{ "logo.svg" | asset_url }}" class="header__logo__placeholder" alt="Corpus Logo" />
+  </a>
+
+  <a href="#" class="header__select">
+    <i class="header__select__toggle fas fa-bars"></i>
+  </a>
+
+  <div class="header__center">
+    <ul class="header__navlist">
+      <li><a class="header__navlist__item" href="/collections/natural-deodorant">Natural Deodorant <div class="header__navitem__hr"></div></a></li>
+      <!--<li><a href="#">Accessories <div class="header__navitem__hr"></div></a></li>-->
+      {% comment %} <li><a id="header__learn__more" class="header__about" href="/pages/about">About Us <div class="header__navitem__hr"></div></a></li> {% endcomment %}
+      <li><a id="header__learn__more" class="header__about header__navlist__item" href="/pages/about-corpus">Learn More <div class="header__navitem__hr"></div></a></li>
+    </ul>
+  </div>
+
+  <div class="header__right">
+    <ul class="header__navlist header__navlist--right">
+      {% if customer %}
+      <li><a href="/account" class="header__navitem__customers">My Account <div class="header__navitem__hr"></div></a></li>
+      {% else %}
+      <li><a href="/account/login" class="header__navitem__customers">Sign In / Register <div class="header__navitem__hr"></div></a></li>
+      {% endif %}
+
+      <li><a href="/cart" class="btn__cart"><div class="header__carticon"><span class="count"></span></div> <div class="header__navitem__hr"></div></a></li>
+    </ul>
+  </div>
+
+  <div class="header__mobile__cart">
+    <a href="/cart" class="btn__cart"><div class="header__carticon"><span class="count"></span></div> <div class="header__navitem__hr"></div></a>
+  </div>
+</div>
+
+<div class="header__mobile__takeover">
+  <div class="header__mobile__takeover__content">
+    <ul class="header__mobile__takeover__list header__mobile__takeover__list--main">
+      <li><a href="/collections/natural-deodorant">Natural Deodorant</a></li>
+      {% comment %} <li><a href="/pages/about">About Us</a></li> {% endcomment %}
+      <li><a href="/pages/about-corpus">Learn More</a></li>
+      <!--<li><a href="#">Accessories</a></li>-->
+    </ul>
+    <ul class="header__mobile__takeover__list header__mobile__takeover__list--bottom">
+      {% if customer %}
+        <li><a href="/account" class="header__navitem__customers">My Account</a></li>
+      {% else %}
+        <li><a href="/account/login" class="header__navitem__customers">Sign In / Register</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+
+{%- assign hasSize = false -%}
+<div class="vue-app">
+  {%- if product != blank -%}
+    {%- for block in section.blocks -%}
+      {%- assign blockTag = block.settings.types | downcase | split: ',' -%}
+      {%- assign ptags = product.tags | join: "," | downcase -%}
+      {%- for bt in blockTag -%}
+        {%- if ptags contains bt -%}
+          {% include 'template__modal' class_name: 'size-chart', attr: 'v-if="sizeChartModalVisible" @close="closeSizeChart"', modal_title: block.settings.title, modal_body_content: block.settings.html %}
+          {%- assign hasSize = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%-endfor-%}
+    {%- endfor -%}
+  {%- else -%} {% comment %}This could be used on a page{%endcomment%}
+  <div class="sizechart__container">
+    {% for block in section.blocks %}
+      <div class="sizechart__chart">
+        <h2>{{ block.settings.title }}</h2>
+        {{block.settings.html}}
+      </div>
+    {% endfor %}
+  </div>
+  {%- endif -%}
+</div>
+{%- if hasSize -%}<style>.size-chart-link {display: block !important;}</style>{%-endif-%}
+{% schema %}
+{
+  "name": "Size Chart",
+  "blocks": [
+    {
+      "type": "size-chart",
+      "name": "Size Chart",
+      "settings": [
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "id": "types",
+          "type": "text",
+          "label": "Product Tags"
+        },
+        {
+          "id": "html",
+          "type": "html",
+          "label": "Html Content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

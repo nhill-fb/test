@@ -1,0 +1,79 @@
+<div class="block-cart">
+	<div class="scroll__wrap">
+	<div class="block-cart__header">
+		<h1>Shopping Cart</h1>
+		<h2></h2>
+	</div>
+
+	<div class="block-cart__content">
+		<div class="block-cart__row block-cart__row--header">
+			<div class="block-cart__col">
+				Product
+			</div>
+			{% comment %} <div class="block-cart__col">
+				Size
+			</div> {% endcomment %}
+			<div class="block-cart__col">
+				Quantity
+			</div>
+			<div class="block-cart__col">
+				Price
+			</div>
+			<div class="block-cart__col">
+				Subtotal
+			</div>
+		</div>
+		<div class="block-cart__row clone-template">
+			<div class="block-cart__col">
+				<h1>Cedar Flora</h1>
+				<h2>Cedar, White Musk, Jasmine, Guaiacwood</h2>
+			</div>
+			{% comment %} <div class="block-cart__col">
+				2.6oz / 75g<br/>
+				Natural Deodorant
+			</div> {% endcomment %}
+			<div class="block-cart__col">
+				<span class="block-cart__qty__icon btn__qtyless">{% include 'icon-qty-less' %}</span>
+				<span class="block-cart__qty__amount">1</span>
+				<span class="block-cart__qty__icon btn__qtymore">{% include 'icon-qty-more' %}</span>
+			</div>
+			<div class="block-cart__col">
+				$<span class="block-cart__itemprice">0.00</span> USD
+			</div>
+			<div class="block-cart__col">
+				<span class="block-cart__itemsubtotal__label">Subtotal </span>$<span class="block-cart__itemsubtotal">0.00</span> USD
+			</div>
+			<div class="block-cart__col--bottom">
+				<a href="#" class="btn__removeitem">Remove</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="block-cart__footer">
+		<div class="block-cart__totals">
+			<h2>Totals</h2>
+			<div class="block-cart__totals__cols">
+				<ul class="block-cart__totals__col">
+					<li>Subtotal:</li>
+					<li>Shipping:</li>
+					<li><br/></li>
+					<li>Total:</li>
+				</ul>
+				<ul class="block-cart__totals__col">
+					<li class="block-cart__totals__subtotal">$0.00 USD</li>
+					<li>Complimentary</li>
+					<li><br/></li>
+					<li class="block-cart__totals__total">$0.00 USD</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="block-cart__checkout">
+		<span>Complimentary standard shipping included.</span>
+		<a href="/checkout/" class="btn secondary on-light-bg btn__checkout">Checkout</a>
+	</div>
+	</div>
+
+	<a href="#" class="block-cart__close">{% include 'icon-close-corpus' %}</a>
+</div>

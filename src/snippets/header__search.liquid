@@ -1,0 +1,25 @@
+<div class="header__search{% if popup %} vue-app popup{% endif %}">
+  <div class="header__search-container">
+    <form action="/search" method="get" role="search" class="header__search-form">
+      <div class="input-group">
+        <input 
+          class="form-control"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'general.search.placeholder' | t }}"
+        >
+        <div class="input-group-append">
+        <button type="submit" class="btn">{%- include 'icon-search' -%}</button>
+        </div>
+        {%- if popup -%}
+        <div class="input-group-append">
+          <button v-toggle="{target: 'body', class: 'header__search--is-active'}" class="header__search-close">
+            {% include 'icon-close' %}
+          </button>
+        </div>
+        {%- endif -%}
+      </div>
+    </form>
+  </div>
+</div>

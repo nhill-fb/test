@@ -1,0 +1,60 @@
+.drawer { 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal + 10;
+  background: rgba($modal-backdrop-bg, $modal-backdrop-opacity);
+  display: flex;
+  
+  .overlay {
+    flex: 1 0 0
+  }
+  .close {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      stroke: #000000;
+      transform: scale(2);
+    }
+  }
+  &.left {
+    .overlay {
+      order: 2;
+    }
+  }
+}
+
+.drawer--is-open {
+  overflow: hidden
+}
+.drawer__title {
+  font-size: 2rem;
+  text-transform: uppercase
+}
+.drawer__container {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+   
+.drawer__heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 10px 15px 20px;
+  align-items: center;
+}
+
+.drawer__body {
+  flex: 1 0 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch
+}

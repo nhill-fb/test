@@ -1,0 +1,18 @@
+.two-col-banner__container {
+  display: flex;
+  flex-direction: column;
+  .first-col {
+    padding: 0;
+  }
+  .second-col {
+    flex-grow: 1;
+  }
+  .first-col.right {
+    order: 2;
+  }
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+}

@@ -1,0 +1,15 @@
+import '../base-theme/filters/money';
+import '../base-theme/filters/handle';
+import '../base-theme/directives/modal';
+import '../base-theme/directives/accordion';
+import '../base-theme/directives/zoom';
+import '../base-theme/directives/back';
+import '../base-theme/directives/toggle';
+import './main';
+import '../base-theme/sections/bc-sf-filter-override';
+import '../base-theme/sections/collection';
+import '../base-theme/sections/product';
+import '../base-theme/sections/related-products';
+import '../base-theme/sections/cart';
+import '../base-theme/sections/accounts';
+import '../base-theme/sections/instafeed';

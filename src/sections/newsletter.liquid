@@ -1,0 +1,20 @@
+{%- include 'template__newsletter' message: section.settings.message, title: section.settings.title -%}
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {      
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "message",
+      "type": "richtext",
+      "label": "Message",
+      "default": "<p>Join the world of LSF & receive 10% off your first order!</p>"
+    }
+  ]
+}
+{% endschema %}

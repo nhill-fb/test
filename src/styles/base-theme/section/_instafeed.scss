@@ -1,0 +1,8 @@
+.instafeed-slideshow {
+  .swiper-slide {
+    > a {
+      display: block;
+      padding-top: 100%;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+<div class="block-motion">
+	{% for product in collections.natural-deodorant.products %}
+		{% if product.metafields.accentuate.motion_id %}
+			<div class="block-motion__panel" data-product-id="{{product.id}}" data-src="{{ product.metafields.accentuate.motion_id }}">
+				<img src="{{ 'tmp-intro.jpg' | asset_url }}" />
+				<div class="block-motion__video"></div>
+			</div>
+		{% endif %}
+	{% endfor %}
+
+
+	{% for product in collections.mini-trios.products %}
+		{% if product.metafields.accentuate.motion_id %}
+			<div class="block-motion__panel" data-product-id="{{product.id}}" data-src="{{ product.metafields.accentuate.motion_id }}">
+				<img src="{{ 'tmp-intro.jpg' | asset_url }}" />
+				<div class="block-motion__video"></div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>

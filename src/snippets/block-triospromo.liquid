@@ -1,0 +1,28 @@
+<div class="block-triospromo">
+	<div class="block-triospromo__header">
+		<div class="block-triospromo__header__col">
+			<h1>Mini Trios</h1>
+			<h2>Can’t decide which corpus</br>scent is for you? Choose three.</h2>
+		</div>
+		<div class="block-triospromo__header__col">
+			{% if settings.disable_all_minis %}
+				<a href="#" class="btn primary on-light-bg btn__trios inactive">
+				{% for product in collections.mini-trios.products %}
+				<span class="btn__trios__desktop">Out of Stock</span>
+				{% endfor %}
+				<span class="btn__trios__mobile">Out Of<br/>Stock</span>
+			</a>
+			{% else %}
+			<a href="#" class="btn primary on-light-bg btn__trios">
+				{% for product in collections.mini-trios.products %}
+				<span class="btn__trios__desktop">Select 3 For ${{ product.price | money_without_currency | remove: '.00' }}</span>
+				{% endfor %}
+				<span class="btn__trios__mobile">Select<br/>3</span>
+			</a>
+			{% endif %}
+		</div>
+	</div>
+	<div class="block-triospromo__shot">
+		<img src="{{'01_PDP_MINIS.png' | file_url }}" alt="Mini Trios" width="786" />
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<div class="learn__more__root"> 
+	<div class="nav__wrap">
+		<ul>
+		{% for link in linklists.learn-more-navigation.links %}
+  			<li><a class="nav__link {% if link.active == true %}active{% endif %}" href="{{ link.url }}">{{ link.title }}</a></li>
+		{% endfor %}
+		</ul>
+	</div>
+
+	<div class="nav__wrap__device">
+		<a href="#">VIEW MORE <i class="about-toggle fas fa-angle-down"></i></a>
+		<div class="learn__more__menu">
+			<ul>
+				{% for link in linklists.learn-more-navigation.links %}
+					<li><a class="nav__link {% if link.active == true %}active{% endif %}" href="{{ link.url }}">{{ link.title }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+
+	<div class="body__wrap">
+		{% for link in linklists.learn-more-navigation.links %}
+
+			{% if link.active == true %}
+  			<div class="section__root">
+			  	{{ link.object.content }}
+			</div>
+			{% endif %}
+
+		{% endfor %}
+	</div>
+</div>
+
+<script>
+// Manually set active menu state
+var el = document.getElementById('header__learn__more')
+el.classList.add('active')
+</script>

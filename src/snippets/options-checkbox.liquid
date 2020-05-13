@@ -1,0 +1,20 @@
+{% for option in product.options_with_values %}
+  <div class="product__options js">
+    <label for="SingleOptionSelector-{{ forloop.index0 }}">
+      Select a {{ option.name }}
+    </label>
+
+    <div class="product__options-list">
+    {% for value in option.values %}
+      <label>
+        <input type="radio" name="{{ option.name }}"       
+          data-single-option-selector
+          data-index="option{{ option.position }}"
+          value="{{ value | escape }}"
+          {% if option.selected_value == value %}checked="checked"{% endif %} />
+          <span>{{ value }}</span>
+      </label>
+    {% endfor %}
+    </div>
+  </div>
+{% endfor %}

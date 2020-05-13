@@ -1,0 +1,15 @@
+<div class="collection">
+  <div class="collection__container">
+    {% section 'collection-banner' %}
+    {%- if settings.collection_display_breadcrumb -%}
+    {% include 'breadcrumbs' %}
+    {%- endif -%}
+    {%- if settings.collection_use_filters -%}
+      {% section 'collection-filters' %}
+      {% section 'collection-template-bc-sf-filter' %} 
+    {%- else -%}
+      {% section 'collection' %}
+    {%- endif -%}
+  </div>
+</div>
+{% section 'swatch-settings' %}

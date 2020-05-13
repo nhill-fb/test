@@ -1,0 +1,57 @@
+// This theme is only using a subset of bootstrap 4 features
+// ********************** IMPORTANT NOTE *****************************
+// Shopify currenty doesn't support the required sass version to compile bootstrap 4
+// Therefore we're using a build tool to output theme.min.css in assets directory.
+//  
+
+@import "../base-theme/mixin";
+@import "variables";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "../base-theme/components/reboot";
+
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/utilities";
+
+// Vendor styles
+@import "~swiper/dist/css/swiper";
+@import "~lity/dist/lity.css";
+//@import "~owl.carousel/src/scss/owl.carousel"; 
+
+// Theme styles
+@import "../base-theme/global";
+
+@import "../base-theme/components/type";
+@import "../base-theme/components/buttons";
+@import "../base-theme/components/hamburger";
+@import "../base-theme/components/modal";
+@import "../base-theme/components/table";
+@import "../base-theme/components/accordion";
+@import "../base-theme/components/tooltip";
+@import "../base-theme/components/animation";
+@import "../base-theme/components/drawer";
+//@import "../base-theme/components/owl-carousel";
+
+@import "../base-theme/section/header";
+@import "../base-theme/section/header__search";
+@import "../base-theme/section/slideshow";
+@import "../base-theme/section/footer";
+@import "../base-theme/section/newsletter";
+@import "../base-theme/section/img-text-banner";
+@import "../base-theme/section/collection";
+@import "../base-theme/section/product";
+@import "../base-theme/section/featured-blocks";
+@import "../base-theme/section/cart";
+@import "../base-theme/section/account";
+@import "../base-theme/section/minicart";
+@import "../base-theme/section/instafeed";
+@import "../base-theme/section/pages";
+@import "../base-theme/section/two-cols";
+@import "../base-theme/section/filters";

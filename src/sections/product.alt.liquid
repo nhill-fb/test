@@ -1,0 +1,143 @@
+{% include 'json__products' %}
+
+{%-assign current_variant = product.selected_or_first_available_variant -%}
+
+<div class="product__section vue-product-detail" product-id="{{product.id}}" data-section-id="{{ section.id }}" data-section-type="product" data-enable-history-state="true" itemscope itemtype="http://schema.org/Product">
+  
+  {%- assign featured_image = current_variant.image | default: product.featured_image -%}
+
+  <meta itemprop="name" content="{{ product.title }}{% unless product.has_only_default_variant %} - {{ current_variant.title }}{% endunless %}">
+  <meta itemprop="url" content="{{ shop.url }}{{ current_variant.url }}">
+  <meta itemprop="brand" content="{{ product.vendor }}">
+  <meta itemprop="image" content="{{ featured_image | img_url: '600x600' }}">
+  <meta itemprop="description" content="{{ product.description | strip_html | escape }}">
+
+  <div class="product__container" v-if="product">
+    <div class="product__top-panel">
+      {% include 'product__images' %}
+      <div class="product__details">
+        <div class="product__details-container">
+          {%- if section.settings.display_breadcrumb -%}
+          <div class="product__breadcrumb">
+              {% include 'product__breadcrumb' %}
+          </div>
+          {%- endif -%}
+          <h1 class="product__title">{{ product.title }}</h1>
+          
+          <div class="product__prices">
+            <span class="price" v-if="variant.price" v-html="$options.filters.money_nodec(variant.price)">
+              {{ current_variant.price | money | remove: '.00'}}
+            </span>
+            <span class="price" v-else v-text="'{{'products.product.sold_out' | t}}'"></span>
+
+            <span v-if="variant.compare_at_price > 0 && variant.compare_at_price > variant.price">
+              <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+              <s class="sale" v-if="variant.compare_at_price > variant.price" v-html="$options.filters.money_nodec(variant.compare_at_price)">
+                {% if current_variant.compare_at_price > current_variant.price %}
+                  {{ current_variant.compare_at_price | money | remove: '.00' }}
+                {% endif %}
+              </s>
+              <span class="label">{{ 'products.product.on_sale' | t }}</span>
+            </span>
+          </div>
+
+          
+
+          <div class="product__form" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+            <meta itemprop="price" content="{{ current_variant.price | divided_by: 100.00 }}">
+            <link itemprop="availability" href="http://schema.org/{% if current_variant.available %}InStock{% else %}OutOfStock{% endif %}">
+
+            <form class="form" @submit.prevent="addToCart()">
+              <product-option v-for="opt in productGroup.options_with_values" :key="opt.name" :option="opt" @selected="selectOption" :is-available="isAvailable"></product-option>
+              <div class="product__desc-details">
+                <div class="accordions" v-accordion>
+                  <div class="accordion">
+                    <div class="accordion__heading">
+                      <h4 class="accordion__title">
+                        <a class="accordion__toggle" href="#tab-desc" role="button" aria-expanded="false" aria-controls="tab-desc">
+                          <span>{{ 'products.product.description' | t }}</span>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="tab-desc" class="accordion__body">
+                      <div class="accordion__content">  
+                        {{ product.description }}
+                      </div>
+                    </div>
+                  </div>
+                  {%- if product.metafields.details.details != blank -%}
+                  <div class="accordion">
+                    <div class="accordion__heading">
+                      <h4 class="accordion__title">
+                        <a class="accordion__toggle" href="#tab-details" role="button" aria-expanded="false" aria-controls="tab-details">
+                          <span>Details</span>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="tab-details" class="accordion__body">
+                      <div class="accordion__content">          
+                        {{product.metafields.details.details}}
+                      </div>
+                    </div>
+                  </div>
+                  {%- endif -%}
+                </div> 
+              </div>
+              <div class="size-chart-link">
+                <a href="#modal-size-chart" @click.prevent="openSizeChart">{{ 'products.product.size_chart' | t }}</a>
+              </div>
+              <div class="product__quantity">
+                <span>{{ 'products.product.quantity' | t }}</span>
+                <div class="product__quantity-box">
+                  <span class="minus" @click="decQty">-</span>
+                  <input type="number" min="0" max="99" size="2" class="quantity" v-model="quantity"/>
+                  <span class="plus" @click="addQty">+</span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary product__addToCart" :class="{'is-busy': isBusy}" :disabled="!variant.available || isBusy">
+                <span v-if="variant.available">{{ 'products.product.add_to_cart' | t }}</span>
+                <span v-else v-text="'{{'products.product.sold_out' | t}}'"></span>
+              </button>
+            </form>
+            
+            {% comment %} <button type="button" :hidden="variant.available" class="btn btn-primary btn-block product__addToCart" id="BIS_trigger">Notify me</button> {% endcomment %}
+          </div>
+
+          
+
+          {% if section.settings.show_share_buttons %}
+            <div class="social-sharing-container">
+              <a href="#">SHARE &gt;</a>
+              <div id="social-sharing-list">
+                {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product %}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Product Details",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_share_buttons",
+        "label": "Show social sharing buttons",
+        "default": false
+      },
+      {
+        "id": "display_breadcrumb",
+        "type": "checkbox",
+        "label": "Display Breadcrumb",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}
+

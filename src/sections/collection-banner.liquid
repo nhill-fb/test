@@ -1,0 +1,271 @@
+{%- include 'helper__collection-banners' -%}
+
+{{ hero_banner }}
+
+{% schema %}
+{
+  "name": "Collection Banners",
+  "blocks": [
+    {
+      "name": "Banner",
+      "type": "collection_banner",
+      "settings": [
+        {
+          "id": "linked-collection",
+          "type": "collection",
+          "label": "Collection to show banner on"
+        },
+        {
+          "type": "header",
+          "content": "Container"
+        },
+        {
+          "id": "bg",
+          "type": "color",
+          "label": "Background",
+          "default": "#ffffff"
+        },
+        {
+          "id": "container",
+          "type": "select",
+          "label": "Container",
+          "default": "full-width",
+          "options": [
+            {
+              "label": "Full Width",
+              "value": "full-width"
+            },
+            {
+              "label": "Contained",
+              "value": "contained"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "id": "image",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "image_mobile",
+          "type": "image_picker",
+          "label": "Image - Mobile"
+        },
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "id": "padding-type-top-bottom",
+          "type": "select",
+          "label": "Top/Bottom Padding Type",
+          "options": [
+            {"label": "Top & Bottom", "value": "py-"},
+            {"label": "Top Only", "value": "pt-"},
+            {"label": "Bottom Only", "value": "pb-"}
+          ],
+          "default": "py-"
+        },
+        {
+          "id": "padding-top-bottom",
+          "type": "range",
+          "min": 0,
+          "max": 5,
+          "default": 3,
+          "step": 1,
+          "label": "Top/Bottom Padding Preset"
+        },
+        {
+          "id": "padding-type-left-right",
+          "type": "select",
+          "label": "Left/Right Padding Type",
+          "options": [
+            {"label": "Left & Right", "value": "px-"},
+            {"label": "Left", "value": "pl-"},
+            {"label": "Right", "value": "pr-"}
+          ],
+          "default": "px-"
+        },
+        {
+          "id": "padding-left-right",
+          "type": "range",
+          "min": 0,
+          "max": 5,
+          "default": 3,
+          "step": 1,
+          "label": "Left/Right Padding Preset"
+        },
+        {
+          "id": "text_layout",
+          "type": "select",
+          "label": "Text Layout",
+          "default": "top",
+          "options": [
+            {
+              "label": "Left",
+              "value": "left"
+            },
+            {
+              "label": "Right",
+              "value": "right"
+            },
+            {
+              "label": "On Top",
+              "value": "top"
+            }, 
+            {
+              "label": "Below",
+              "value": "below"
+            }, 
+            {
+              "label": "Above",
+              "value": "above"
+            }
+          ]
+        },
+        {
+          "id": "text_pos",
+          "type": "select",
+          "label": "Text Position",
+          "default": "align-items-md-center justify-content-md-center",
+          "options": [
+            {"label": "Top Left", "value": "align-items-md-start justify-content-md-start"},
+            {"label": "Top Center", "value": "align-items-md-start justify-content-md-center"},
+            {"label": "Top Right", "value": "align-items-md-start justify-content-md-end"},
+            {"label": "Center Left", "value": "align-items-md-center justify-content-md-start"},
+            {"label": "Center Center", "value": "align-items-md-center justify-content-md-center"},
+            {"label": "Center Right", "value": "align-items-md-center justify-content-md-end"},
+            {"label": "Bottom Left", "value": "align-items-md-end justify-content-md-start"},
+            {"label": "Bottom Center", "value": "align-items-md-end justify-content-md-center"},
+            {"label": "Bottom Right", "value": "align-items-md-end justify-content-md-end"}
+          ]
+        },
+        {
+          "id": "text_pos_mobile",
+          "type": "select",
+          "label": "Text Position - Mobile",
+          "default": "align-items-center justify-content-center",
+          "options": [
+            {"label": "Top Left", "value": "align-items-start justify-content-start"},
+            {"label": "Top Center", "value": "align-items-start justify-content-center"},
+            {"label": "Top Right", "value": "align-items-start justify-content-end"},
+            {"label": "Center Left", "value": "align-items-center justify-content-start"},
+            {"label": "Center Center", "value": "align-items-center justify-content-center"},
+            {"label": "Center Right", "value": "align-items-center justify-content-end"},
+            {"label": "Bottom Left", "value": "align-items-end justify-content-start"},
+            {"label": "Bottom Center", "value": "align-items-end justify-content-center"},
+            {"label": "Bottom Right", "value": "align-items-end justify-content-end"}
+          ]
+        },
+        {
+          "id": "title",
+          "type": "text",
+          "label": "Heading"
+        },
+        {
+          "id": "subtitle",
+          "type": "text",
+          "label": "Sub heading"
+        },
+        {
+          "id": "message",
+          "type": "richtext",
+          "label": "Message"
+        },
+        {
+          "id": "color",
+          "type": "color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "id": "message_width",
+          "type": "range",
+          "label": "Message Width",
+          "min": 10,
+          "max": 1000,
+          "unit": "px",
+          "step": 10,
+          "default": 1000
+        },
+        {
+          "id": "text_align",
+          "type": "select",
+          "label": "Text Align",
+          "default": "text-left",
+          "options": [
+            {
+              "label": "Left",
+              "value": "text-left"
+            },
+            {
+              "label": "Center",
+              "value": "text-center"
+            },
+            {
+              "label": "Right",
+              "value": "text-right"
+            }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "id": "btn_color",
+          "type": "color",
+          "label": "Button Color"
+        },
+        {
+          "id": "btn_bg",
+          "type": "color",
+          "label": "Button Background"
+        },
+        {
+          "id": "link",
+          "type": "url",
+          "label": "Link"
+        },
+        {
+          "id": "link_text",
+          "type": "text",
+          "label": "Link Text",
+          "default": "Shop Now"
+        },
+        {
+          "id": "link_type",
+          "type": "select",
+          "label": "Link Type",
+          "options": [
+            {
+              "value": "",
+              "label": "No Link"
+            },
+            {
+              "value": "btn btn-primary",
+              "label": "Primary Button"
+            },
+            {
+              "value": "btn btn-outline-primary",
+              "label": "Outline Primary Button"
+            },
+            {
+              "value": "btn-link",
+              "label": "Anchor"
+            },
+            {
+              "value": "container",
+              "label": "Whole banner is clickable"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,88 @@
+.table {
+  width: 100%;
+
+  thead tr th {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    padding: 20px 10px;
+    font-weight: 700;
+  }
+
+  thead.bg-primary tr th {
+    background: $color-brand-primary;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 400;
+  }
+
+  tbody tr td,
+  tfoot tr td {
+    color: #000;
+    font-size: 1.2rem;
+    letter-spacing: 0;
+    padding: 20px 10px;
+    vertical-align: middle;
+  }
+
+  thead.bg-primary + tbody tr td {
+    text-align: center;
+  }
+
+  &.table-condensed {
+    tbody,
+    thead,
+    tfoot {
+      tr td,
+      tr th {
+        padding: 10px;
+      }
+    }
+  }
+
+  &.table-bordered {
+    //border-bottom: 1px solid $color-brand-border
+    tbody, thead, tfoot {
+      tr td,
+      tr th {
+        border: 1px solid $color-brand-border;
+      }
+    }
+
+    thead.bg-primary tr th {
+      border-color: $color-brand-primary;
+    }
+  }
+
+  &.table-stripe {
+    tbody tr:nth-child(even) td {
+      background: rgba($color-brand-secondary, 0.12);
+    }
+  }
+}
+
+// Responsive tables
+//
+// Generate series of `.table-responsive-*` classes for configuring the screen
+// size of where your table will overflow.
+
+.table-responsive {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($next, $grid-breakpoints);
+
+    &#{$infix} {
+      @include media-breakpoint-down($breakpoint) {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+
+        // Prevent double border on horizontal scroll due to use of `display: block;`
+        > .table-bordered {
+          border: 0;
+        }
+      }
+    }
+  }
+}

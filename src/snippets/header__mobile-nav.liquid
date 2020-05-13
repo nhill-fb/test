@@ -1,0 +1,10 @@
+{%- assign width = section.settings.logo_mobile_width | times: 1.3 | ceil | append: 'x'-%}
+{%- assign logo = section.settings.logo_mobile | default: section.settings.logo -%}
+<div class="vue-app">
+  <drawer v-cloak :position="'left'" :id="'nav-drawer'" :is-open="navDrawerIsOpen" @close="closeNavDrawer"> 
+    <template #header>
+      <img src="{{ logo | img_url: width }}" />
+    </template>
+    {% include 'header__nav' menu: section.settings.mobile_main_linklist, is_mobile: true %}
+  </drawer>
+</div>

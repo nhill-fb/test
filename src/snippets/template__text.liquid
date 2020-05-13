@@ -1,0 +1,15 @@
+<div class="content__text" style="background-color:{{bg}}">
+  <div class="content__text-container {{text_align}}" 
+    style="max-width: {{max_width}}px">
+    <div class="content__text-content {{padding}}">
+      {%-if title != blank-%}
+      <h2>{{title}}</h2>
+      {%-endif-%}
+      {%-if subtitle != blank-%}
+      <h3>{{subtitle}}</h3>
+      {%-endif-%}
+      {{content}}
+    </div>
+  </div>
+
+</div>

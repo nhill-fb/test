@@ -1,0 +1,46 @@
+<div class="block-video">
+	{% for product in collections.natural-deodorant.products %}
+		{% if product.metafields.vimeo.vimeo %}
+			<div class="block-video__panel {% if product.tags contains 'holiday' %} hide{% endif %}" data-product-id="{{ product.id }}" data-vimeo="{{ product.metafields.vimeo.vimeo }}" data-vimeo-mobile="{{ product.metafields.vimeo.vimeo_mobile }}">
+				<div class="block-video__panel__content">
+					<div class="block-video__panel__vimeo" id="block-video__panel__vimeo__{{ product.id }}"></div>
+
+					<div data-src="{{ product.metafields.vimeo.vimeo_poster }}" class="block-video__poster__inline block-video__poster__inline--desktop" /></div>
+					<img data-src="{{ product.metafields.vimeo.vimeo_poster }}" alt="Video Poster" class="block-video__poster block-video__poster--desktop" />
+
+					<div data-src="{{ product.metafields.vimeo.vimeo_poster_mobile }}" class="block-video__poster__inline block-video__poster__inline--mobile" /></div>
+					<img data-src="{{ product.metafields.vimeo.vimeo_poster_mobile }}" alt="Video Poster" class="block-video__poster block-video__poster--mobile" />
+
+					<img src="{{ "icon-play.svg" | asset_url }}" class="block-video__play" alt="Video Play" />
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+
+	{% for product in collections.mini-trios.products %}
+		{% if product.metafields.vimeo.vimeo %}
+			<div class="block-video__panel" data-product-id="{{ product.id }}" data-vimeo="{{ product.metafields.vimeo.vimeo }}" data-vimeo-mobile="{{ product.metafields.vimeo.vimeo_mobile }}">
+				<div class="block-video__panel__content">
+					<div class="block-video__panel__vimeo" id="block-video__panel__vimeo__{{ product.id }}"></div>
+
+					<div data-src="{{ product.metafields.vimeo.vimeo_poster }}" class="block-video__poster__inline" /></div>
+					<img data-src="{{ product.metafields.vimeo.vimeo_poster }}" alt="Video Poster" class="block-video__poster" />
+
+					<div data-src="{{ product.metafields.vimeo.vimeo_poster_mobile }}" class="block-video__poster__inline block-video__poster__inline--mobile" /></div>
+					<img data-src="{{ product.metafields.vimeo.vimeo_poster_mobile }}" alt="Video Poster" class="block-video__poster block-video__poster--mobile" />
+
+					<img src="{{ "icon-play.svg" | asset_url }}" class="block-video__play" alt="Video Play" />
+				</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>
+
+<div class="block-video__overlay">
+	<div class="block-video__overlay__header">
+		<h1></h1>
+		<h2></h2>
+	</div>
+	<div id="block-video__overlay__vimeo" class="block-video__overlay__vimeo"></div>
+	<a href="#" class="block-video__overlay__close">{% include 'icon-close-corpus' %}</a>
+</div>

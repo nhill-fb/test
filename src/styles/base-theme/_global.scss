@@ -1,0 +1,131 @@
+
+
+html {
+  font-size: percentage(10/16); //reset to 10px = 1rem
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+body {
+  min-height: 100vh;
+  &.overflow-hidden {
+    overflow: hidden;
+  }
+}
+
+img {
+  @extend .img-fluid;
+  
+  .img &,
+  &[data-sizes="auto"] { 
+    display: block;
+    width: 100%
+  }
+  &[role="presentation"] {
+    background-color: #fff
+  }
+}
+.root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; // use this to keep footer at the bottom
+}
+main {
+  flex: 1 0 0;
+}
+svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+a:hover {
+  color: $color-cta-primary-hover
+}
+
+.small-container {
+  max-width: 720px;
+  margin: 0 auto
+
+}
+.contained {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+// .fade-box {
+//   .lazyautosizes,
+//   .lazyload,
+//   .lazyloading {
+//     transition: all 400ms;
+//     opacity: 0;
+//   }
+//   .lazyloaded {
+//     opacity: 1
+//   }
+// }
+
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $color-brand-primary
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $color-brand-tertiary
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 15px;
+  height: auto;
+  background-image: none;
+  margin-top: 0;
+  transform: translateY(-50%)
+}
+
+.preloader {
+  background-image: url(preloader-primary.gif);
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  &.small {
+    width: 50px;
+    height: 26px
+  }
+}
+
+.errors ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  color: red
+}
+
+.form-group {
+  margin-bottom: 20px;
+  > label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 5px
+  }
+  .form-control {
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
+
+
+[v-cloak] {
+  display: none
+}
+
+carousel .swiper-slide {
+  display: none; // this will hide slides until they are initialized so it doesn't stack on first pae load
+}

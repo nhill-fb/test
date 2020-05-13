@@ -1,0 +1,571 @@
+{%- capture leftbanner -%}
+  {%- assign padding = 
+    section.settings.left_padding-type-top-bottom 
+      | append: section.settings.left_padding-top-bottom 
+      | append: ' '
+      | append: section.settings.left_padding-type-left-right
+      | append: section.settings.left_padding-left-right
+  -%}
+  {%- include 'template__image-text' 
+    title: section.settings.left_title,
+    subtitle: section.settings.left_subtitle, 
+    body_text: section.settings.left_message,
+    text_align: section.settings.left_text_align,
+    width: section.settings.left_message_width,
+    text_layout: section.settings.left_text_layout,
+    text_pos: section.settings.left_text_pos,
+    text_pos_mobile: section.settings.left_text_pos_mobile,
+    link_text: section.settings.left_link_text,
+    img: section.settings.left_image,
+    btn_color: section.settings.left_btn_color,
+    btn_bg: section.settings.left_btn_bg,
+    mobile_image: section.settings.left_image_mobile,
+    bg: section.settings.left_bg, 
+    color: section.settings.left_color,
+    link: section.settings.left_link,
+    link_type: section.settings.left_link_type -%}
+{%-endcapture-%}
+{%- capture rightbanner -%}
+  {%- assign padding = 
+    section.settings.right_padding-type-top-bottom 
+      | append: section.settings.right_padding-top-bottom 
+      | append: ' '
+      | append: section.settings.right_padding-type-left-right
+      | append: section.settings.right_padding-left-right
+  -%}
+  {%- include 'template__image-text' 
+    title: section.settings.right_title,
+    subtitle: section.settings.right_subtitle, 
+    body_text: section.settings.right_message,
+    text_align: section.settings.right_text_align,
+    width: section.settings.right_message_width,
+    text_layout: section.settings.right_text_layout,
+    text_pos: section.settings.right_text_pos,
+    text_pos_mobile: section.settings.right_text_pos_mobile,
+    link_text: section.settings.right_link_text,
+    img: section.settings.right_image,
+    btn_color: section.settings.right_btn_color,
+    btn_bg: section.settings.right_btn_bg,
+    mobile_image: section.settings.right_image_mobile,
+    bg: section.settings.right_bg, 
+    color: section.settings.right_color,
+    link: section.settings.right_link,
+    link_type: section.settings.right_link_type -%}
+{%- endcapture -%}
+{%- assign leftwidth = 'col-md-' | append: section.settings.left_width -%}
+{%- include 'template__two-col' 
+  container: section.settings.container,
+  swap: section.settings.swap, 
+  left_width: leftwidth, 
+  leftcol_content: leftbanner, 
+  rightcol_content: rightbanner -%}
+
+{% schema %}
+{
+  "name": "2 Columns Banner",
+  "settings": [
+    {
+      "id": "swap",
+      "type": "checkbox",
+      "label": "Swap Columns",
+      "info": "Places image column to the right"
+    },
+    {
+      "id": "container",
+      "type": "select",
+      "label": "Container",
+      "default": "full-width",
+      "options": [
+        {
+          "label": "Full Width",
+          "value": "full-width"
+        },
+        {
+          "label": "Contained",
+          "value": "contained"
+        }
+      ]
+    },
+    {
+      "id": "left_width",
+      "type": "range",
+      "label": "Width",
+      "min": 1,
+      "max": 12,
+      "default": 6
+    },
+    {
+      "type": "header",
+      "content": "Left Column"
+    },
+    {
+      "id": "left_bg",
+      "type": "color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "id": "left_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "left_image_mobile",
+      "type": "image_picker",
+      "label": "Image - Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "id": "left_padding-type-top-bottom",
+      "type": "select",
+      "label": "Top/Bottom Padding Type",
+      "options": [
+        {"label": "Top & Bottom", "value": "py-"},
+        {"label": "Top Only", "value": "pt-"},
+        {"label": "Bottom Only", "value": "pb-"}
+      ],
+      "default": "py-"
+    },
+    {
+      "id": "left_padding-top-bottom",
+      "type": "range",
+      "min": 0,
+      "max": 5,
+      "default": 3,
+      "step": 1,
+      "label": "Top/Bottom Padding Preset"
+    },
+    {
+      "id": "left_padding-type-left-right",
+      "type": "select",
+      "label": "Left/Right Padding Type",
+      "options": [
+        {"label": "Left & Right", "value": "px-"},
+        {"label": "Left", "value": "pl-"},
+        {"label": "Right", "value": "pr-"}
+      ],
+      "default": "px-"
+    },
+    {
+      "id": "left_padding-left-right",
+      "type": "range",
+      "min": 0,
+      "max": 5,
+      "default": 3,
+      "step": 1,
+      "label": "Left/Right Padding Preset"
+    },
+    {
+      "id": "left_text_layout",
+      "type": "select",
+      "label": "Text Layout",
+      "default": "top",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        },
+        {
+          "label": "On Top",
+          "value": "top"
+        }, 
+        {
+          "label": "Below",
+          "value": "below"
+        }, 
+        {
+          "label": "Above",
+          "value": "above"
+        }
+      ]
+    },
+    {
+      "id": "left_text_pos",
+      "type": "select",
+      "label": "Text Position",
+      "default": "align-items-md-center justify-content-md-center",
+      "options": [
+        {"label": "Top Left", "value": "align-items-md-start justify-content-md-start"},
+        {"label": "Top Center", "value": "align-items-md-start justify-content-md-center"},
+        {"label": "Top Right", "value": "align-items-md-start justify-content-md-end"},
+        {"label": "Center Left", "value": "align-items-md-center justify-content-md-start"},
+        {"label": "Center Center", "value": "align-items-md-center justify-content-md-center"},
+        {"label": "Center Right", "value": "align-items-md-center justify-content-md-end"},
+        {"label": "Bottom Left", "value": "align-items-md-end justify-content-md-start"},
+        {"label": "Bottom Center", "value": "align-items-md-end justify-content-md-center"},
+        {"label": "Bottom Right", "value": "align-items-md-end justify-content-md-end"}
+      ]
+    },
+    {
+      "id": "left_text_pos_mobile",
+      "type": "select",
+      "label": "Text Position - Mobile",
+      "default": "align-items-center justify-content-center",
+      "options": [
+        {"label": "Top Left", "value": "align-items-start justify-content-start"},
+        {"label": "Top Center", "value": "align-items-start justify-content-center"},
+        {"label": "Top Right", "value": "align-items-start justify-content-end"},
+        {"label": "Center Left", "value": "align-items-center justify-content-start"},
+        {"label": "Center Center", "value": "align-items-center justify-content-center"},
+        {"label": "Center Right", "value": "align-items-center justify-content-end"},
+        {"label": "Bottom Left", "value": "align-items-end justify-content-start"},
+        {"label": "Bottom Center", "value": "align-items-end justify-content-center"},
+        {"label": "Bottom Right", "value": "align-items-end justify-content-end"}
+      ]
+    },
+    {
+      "id": "left_title",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "left_subtitle",
+      "type": "text",
+      "label": "Sub heading"
+    },
+    {
+      "id": "left_message",
+      "type": "richtext",
+      "label": "Message"
+    },
+    {
+      "id": "left_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "id": "left_message_width",
+      "type": "range",
+      "label": "Message Width",
+      "min": 10,
+      "max": 1000,
+      "unit": "px",
+      "step": 10,
+      "default": 1000
+    },
+    {
+      "id": "left_text_align",
+      "type": "select",
+      "label": "Text Align",
+      "default": "text-left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "text-left"
+        },
+        {
+          "label": "Center",
+          "value": "text-center"
+        },
+        {
+          "label": "Right",
+          "value": "text-right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "id": "left_btn_color",
+      "type": "color",
+      "label": "Button Color"
+    },
+    {
+      "id": "left_btn_bg",
+      "type": "color",
+      "label": "Button Background"
+    },
+    {
+      "id": "left_link",
+      "type": "url",
+      "label": "Link"
+    },
+    {
+      "id": "left_link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "Shop Now"
+    },
+    {
+      "id": "left_link_type",
+      "type": "select",
+      "label": "Link Type",
+      "options": [
+        {
+          "value": "btn btn-primary",
+          "label": "Primary Button"
+        },
+        {
+          "value": "btn btn-outline-primary",
+          "label": "Outline Primary Button"
+        },
+        {
+          "value": "btn-link",
+          "label": "Anchor"
+        },
+        {
+          "value": "container",
+          "label": "Whole banner is clickable"
+        },
+        {
+          "value": "",
+          "label": "No Link"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Right Column"
+    },
+    {
+      "id": "right_bg",
+      "type": "color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "id": "right_image",
+      "type": "image_picker",
+      "label": "Image"
+    },
+    {
+      "id": "right_image_mobile",
+      "type": "image_picker",
+      "label": "Image - Mobile"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "id": "right_padding-type-top-bottom",
+      "type": "select",
+      "label": "Top/Bottom Padding Type",
+      "options": [
+        {"label": "Top & Bottom", "value": "py-"},
+        {"label": "Top Only", "value": "pt-"},
+        {"label": "Bottom Only", "value": "pb-"}
+      ],
+      "default": "py-"
+    },
+    {
+      "id": "right_padding-top-bottom",
+      "type": "range",
+      "min": 0,
+      "max": 5,
+      "default": 3,
+      "step": 1,
+      "label": "Top/Bottom Padding Preset"
+    },
+    {
+      "id": "right_padding-type-left-right",
+      "type": "select",
+      "label": "Left/Right Padding Type",
+      "options": [
+        {"label": "Left & Right", "value": "px-"},
+        {"label": "Left", "value": "pl-"},
+        {"label": "Right", "value": "pr-"}
+      ],
+      "default": "px-"
+    },
+    {
+      "id": "right_padding-left-right",
+      "type": "range",
+      "min": 0,
+      "max": 5,
+      "default": 3,
+      "step": 1,
+      "label": "Left/Right Padding Preset"
+    },
+    {
+      "id": "right_text_layout",
+      "type": "select",
+      "label": "Text Layout",
+      "default": "top",
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        },
+        {
+          "label": "On Top",
+          "value": "top"
+        }, 
+        {
+          "label": "Below",
+          "value": "below"
+        }, 
+        {
+          "label": "Above",
+          "value": "above"
+        }
+      ]
+    },
+    {
+      "id": "right_text_pos",
+      "type": "select",
+      "label": "Text Position",
+      "default": "align-items-md-center justify-content-md-center",
+      "options": [
+        {"label": "Top Left", "value": "align-items-md-start justify-content-md-start"},
+        {"label": "Top Center", "value": "align-items-md-start justify-content-md-center"},
+        {"label": "Top Right", "value": "align-items-md-start justify-content-md-end"},
+        {"label": "Center Left", "value": "align-items-md-center justify-content-md-start"},
+        {"label": "Center Center", "value": "align-items-md-center justify-content-md-center"},
+        {"label": "Center Right", "value": "align-items-md-center justify-content-md-end"},
+        {"label": "Bottom Left", "value": "align-items-md-end justify-content-md-start"},
+        {"label": "Bottom Center", "value": "align-items-md-end justify-content-md-center"},
+        {"label": "Bottom Right", "value": "align-items-md-end justify-content-md-end"}
+      ]
+    },
+    {
+      "id": "right_text_pos_mobile",
+      "type": "select",
+      "label": "Text Position - Mobile",
+      "default": "align-items-center justify-content-center",
+      "options": [
+        {"label": "Top Left", "value": "align-items-start justify-content-start"},
+        {"label": "Top Center", "value": "align-items-start justify-content-center"},
+        {"label": "Top Right", "value": "align-items-start justify-content-end"},
+        {"label": "Center Left", "value": "align-items-center justify-content-start"},
+        {"label": "Center Center", "value": "align-items-center justify-content-center"},
+        {"label": "Center Right", "value": "align-items-center justify-content-end"},
+        {"label": "Bottom Left", "value": "align-items-end justify-content-start"},
+        {"label": "Bottom Center", "value": "align-items-end justify-content-center"},
+        {"label": "Bottom Right", "value": "align-items-end justify-content-end"}
+      ]
+    },
+    {
+      "id": "right_title",
+      "type": "text",
+      "label": "Heading"
+    },
+    {
+      "id": "right_subtitle",
+      "type": "text",
+      "label": "Sub heading"
+    },
+    {
+      "id": "right_message",
+      "type": "richtext",
+      "label": "Message"
+    },
+    {
+      "id": "right_color",
+      "type": "color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "id": "right_message_width",
+      "type": "range",
+      "label": "Message Width",
+      "min": 10,
+      "max": 1000,
+      "unit": "px",
+      "step": 10,
+      "default": 1000
+    },
+    {
+      "id": "right_text_align",
+      "type": "select",
+      "label": "Text Align",
+      "default": "text-left",
+      "options": [
+        {
+          "label": "Left",
+          "value": "text-left"
+        },
+        {
+          "label": "Center",
+          "value": "text-center"
+        },
+        {
+          "label": "Right",
+          "value": "text-right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "id": "right_btn_color",
+      "type": "color",
+      "label": "Button Color"
+    },
+    {
+      "id": "right_btn_bg",
+      "type": "color",
+      "label": "Button Background"
+    },
+    {
+      "id": "right_link",
+      "type": "url",
+      "label": "Link"
+    },
+    {
+      "id": "right_link_text",
+      "type": "text",
+      "label": "Link Text",
+      "default": "Shop Now"
+    },
+    {
+      "id": "right_link_type",
+      "type": "select",
+      "label": "Link Type",
+      "options": [
+        {
+          "value": "btn btn-primary",
+          "label": "Primary Button"
+        },
+        {
+          "value": "btn btn-outline-primary",
+          "label": "Outline Primary Button"
+        },
+        {
+          "value": "btn-link",
+          "label": "Anchor"
+        },
+        {
+          "value": "container",
+          "label": "Whole banner is clickable"
+        },
+        {
+          "value": "",
+          "label": "No Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "2 Columns Banner",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

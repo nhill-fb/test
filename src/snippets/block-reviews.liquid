@@ -1,0 +1,18 @@
+<div class="block-reviews">
+	{% for product in collections.natural-deodorant.products %}
+	
+		<div class="block-reviews__panel" data-product-id="{{product.id}}">
+			<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+		</div>
+
+	{% endfor %}
+
+
+	{% for product in collections.mini-trios.products %}
+
+		<div class="block-reviews__panel" data-product-id="{{product.id}}">
+			<div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+		</div>
+
+	{% endfor %}
+</div>

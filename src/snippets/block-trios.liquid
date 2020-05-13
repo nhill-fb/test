@@ -1,0 +1,32 @@
+{% for product in collections.mini-trios.products %}
+	<div class="block-trios" data-product-id="{{ product.id }}" data-variant-id="{{ product.variants.first.id }}">
+{% endfor %}
+
+	<div class="block-trios__header">
+		<h1>0/3 Scents Selected</h1>
+	</div>
+	<div class="block-trios__content">
+    <div class="block-trios__actions">
+      {% for product in collections.mini-trios.products %}
+        <a href="#" class="btn secondary on-light-bg disabled btn__addtrios">Add To Cart ${{ product.price | money_without_currency | remove: '.00' }}</a>
+      {% endfor %}
+    </div>
+    <div class="block-trios__responsive">
+      <div class="block-trios__selection">
+        {%- include 'block-trios-selection' heading: 'Selection 1/3', css: 'selection1 active' -%}
+        {%- include 'block-trios-selection' heading: 'Selection 2/3', css: 'selection2' -%}
+        {%- include 'block-trios-selection' heading: 'Selection 3/3', css: 'selection3' -%}
+      </div>
+    </div>
+    <div class="block-trios__bottom">
+			<span>Complimentary standard shipping included.</span>
+			<div class="group">
+        <a class="btn__clearselection" href="#">Clear Selections</a>
+        {% for product in collections.mini-trios.products %}
+          <a href="#" class="btn secondary on-light-bg disabled btn__addtrios">Add To Cart ${{ product.price | money_without_currency | remove: '.00' }}</a>
+        {% endfor %}
+      </div>
+		</div>
+	</div>
+	<a href="#" class="block-trios__close">{% include 'icon-close-corpus' %}</a>
+</div>

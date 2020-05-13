@@ -1,0 +1,82 @@
+<footer class="footer__section">
+  <div class="footer__section-container">
+    <div class="footer__section-col">
+      <div class="footer__left">
+        {%- include 'template__newsletter' title: section.settings.newsletter_title, message: section.settings.newsletter_msg -%}
+        <div class="footer__social-list">
+          {%- assign social_accounts = 'Instagram, Facebook, Pinterest, Twitter, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
+          {%- for social in social_accounts -%}
+            {%- assign social_handle = social | handleize -%}
+            {%- capture social_link -%}social_{{ social_handle }}_link{%- endcapture -%}
+            {%- capture social_icon -%}icon-{{ social_handle }}{%- endcapture -%}
+
+            {%- if settings[social_link] != blank -%}              
+              <a target="_blank" href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
+                {{social}}
+              </a>
+            {%- endif -%}
+
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="footer__right">
+        <ul class="footer__menu">
+          {% for link in linklists[section.settings.footer_linklist].links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    {% if section.settings.show_copyright %}
+    <div class="footer__meta">
+      <div class="copyright">
+          <p>{{ shop.name }} &copy; {{ 'now' | date: '%Y' }} 
+            {% if section.settings.copyright_text != blank %}
+              {{ section.settings.copyright_text }}
+            {% endif %}
+          </p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "text",
+        "id": "newsletter_title",
+        "label": "Newletter title text",
+        "default": "Join our Newsletter"
+      },
+      {
+        "type": "richtext",
+        "id": "newsletter_msg",
+        "label": "Newsletter Message"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_linklist",
+        "label": "Footer menu",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_copyright",
+        "label": "Show copyright",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Additional copyright text"
+      }
+    ]
+  }
+
+{% endschema %}
